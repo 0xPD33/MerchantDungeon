@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
+[ext_resource path="res://World/Objects/Barrel.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 9 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "destroy"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 10.0, 0.0, -10.0, 10.0, 0.0 ]
+}
+
+[node name="Barrel" type="Area2D"]
+collision_layer = 128
+collision_mask = 20
+script = ExtResource( 3 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+scale = Vector2( 1.75, 1.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 225, 223, 8, 12 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+position = Vector2( 1.00974e-28, -6 )
+scale = Vector2( 1.75, 1.5 )
+texture = ExtResource( 1 )
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 225, 231, 8, 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/destroy = SubResource( 2 )
+[connection signal="area_entered" from="." to="." method="_on_Barrel_area_entered"]

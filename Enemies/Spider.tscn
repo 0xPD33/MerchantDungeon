@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Spider.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.36345
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -1.77141, -7.01809, -5.89182, -3.84426, -2.88503, 5.89994, 2.96149, 5.89994, 5.91259, -3.84426, 1.79218, -7.01809 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "spider_move"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.95, 0.95 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.3234
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 6.30607
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 50.3469
+
+[node name="Spider" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+acceleration = 50
+
+[node name="Sprite" parent="." index="0"]
+rotation = -1.5708
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 494, 86, 14, 14 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" parent="." index="2"]
+visible = false
+occluder = SubResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/spider_move = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+position = Vector2( 2.77795, 0 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+visible = false
+shape = SubResource( 5 )
+
+[node name="Stats" parent="." index="8"]
+max_health = 3
+
+[editable path="Hurtbox"]
+
+[editable path="Hitbox"]
+
+[editable path="PlayerDetectionZone"]
