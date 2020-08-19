@@ -6,11 +6,18 @@
 [ext_resource path="res://Boxes/Hitbox.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.10522, 10.0561 )
+extents = Vector2( 4.21198, 10.0771 )
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="Node2D" groups=[
+"Weapon",
+]]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 2
 
 [node name="Body" type="Node2D" parent="."]
 rotation = 0.785398
@@ -24,7 +31,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" parent="Body" instance=ExtResource( 2 )]
-collision_mask = 224
+collision_mask = 97
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="Body/Hitbox" index="0"]

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
+
 export var acceleration = 100
 export var max_speed = 50
 export var friction = 100
@@ -7,19 +9,31 @@ export var friction = 100
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	CHARGE
 }
+
+var hit = false
+var dead = false
+
+var player = null
 
 var state = IDLE
 
 var velocity = Vector2.ZERO
 
-# var knockback = Vector2.ZERO
+var knockback = Vector2.ZERO
+
+onready var move_anim = $MoveAnimation
+onready var hit_anim = $HitAnimation
+onready var death_anim = $DeathAnimation
 
 onready var stats = $Stats
 onready var player_detection_zone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
 onready var hitbox = $Hitbox
+
+onready var normal_speed = max_speed
 
 
 func _ready():
@@ -28,24 +42,27 @@ func _ready():
 
 
 func _physics_process(delta: float):
-#	knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
-#	knockback = move_and_slide(knockback)
-	
-	match state:
-		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-			seek_player()
-		WANDER:
-			pass
-		CHASE:
-			var player = player_detection_zone.player
-			if player != null:
-				var direction = (player.global_position - global_position).normalized()
-				velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
-			else:
-				state = IDLE
-	
-	velocity = move_and_slide(velocity)
+	if !dead:
+		knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
+		knockback = move_and_slide(knockback)
+		
+		match state:
+			IDLE:
+				velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+				seek_player()
+			WANDER:
+				pass
+			CHASE:
+				player = player_detection_zone.player
+				if player != null:
+					var direction = (player.global_position - global_position).normalized()
+					velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
+				else:
+					state = IDLE
+		
+		velocity = move_and_slide(velocity)
+	else:
+		pass
 
 
 func seek_player():
@@ -53,11 +70,11 @@ func seek_player():
 		state = CHASE
 
 
-func _on_Hurtbox_area_entered(area: Area2D):
-	stats.health -= area.damage
-	# knockback = area.knockback_vector * 100
-
-
-func _on_EnemyStats_no_health():
-	queue_free()
+func create_popup_damage(dmg, color, size):
+	var instance = POPUP_DAMAGE.instance()
+	get_tree().current_scene.add_child(instance)
+	instance.modulate = color
+	instance.scale = size
+	instance.position = get_global_transform().origin
+	instance.popup_damage(dmg)
 

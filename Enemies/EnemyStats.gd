@@ -4,6 +4,7 @@ export(int) var max_health = 10
 onready var health = max_health setget set_health
 
 export(float) var damage = 1
+export(float) var knockback_multiplier = 1
 
 signal no_health
 

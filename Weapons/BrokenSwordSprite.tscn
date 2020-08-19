@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=2]
+
+[node name="BrokenSwordSprite" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.870588, 0.870588, 0.870588, 1 )
+texture = ExtResource( 1 )
+offset = Vector2( 3, -3 )
+region_enabled = true
+region_rect = Rect2( 617.083, 120, 9.91656, 9.89912 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+self_modulate = Color( 0.6, 0.443137, 0.239216, 1 )
+position = Vector2( -0.0883883, -0.110485 )
+texture = ExtResource( 2 )
+offset = Vector2( -3, 4 )
+region_enabled = true
+region_rect = Rect2( 612.895, 129, 5.10547, 5.07968 )
+__meta__ = {
+"_editor_description_": ""
+}

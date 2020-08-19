@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Bat.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.32402
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -6.86433, -13.1333, -6.9037, -16.8736, -5.95876, -16.913, -5.80127, -17.858, -4.85633, -17.8973, -4.81696, -18.921, -4.14763, -18.921, -4.06888, -17.8186, -1.90339, -17.858, -1.82465, -19.866, -1.15531, -19.9447, -1.11594, -18.8816, 1.08892, -18.921, 1.12829, -19.9053, 1.87637, -19.866, 1.87637, -17.7792, 4.19935, -17.858, 4.19935, -18.921, 4.86868, -18.921, 4.90806, -17.858, 5.81362, -17.858, 5.853, -16.913, 6.87668, -16.913, 6.87668, -13.0545, 6.08923, -13.0545, 6.08923, -14.1963, 3.92374, -14.1176, 3.88437, -13.0939, 3.09692, -13.0939, 3.09692, -15.1019, 1.87637, -15.0625, 1.87637, -12.1096, 1.12829, -12.1096, 1.04955, -13.0939, -0.997824, -13.0939, -1.15531, -12.0308, -1.86402, -12.1096, -1.86402, -15.1019, -3.16331, -15.1019, -3.08457, -13.0545, -3.83265, -13.1333, -3.87202, -14.1569, -6.15563, -14.0782, -6.11625, -13.1333 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "bat_move"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, -1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "bat_hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.360784, 0.360784, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 3.0, 0.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 7.91596
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 8.00553
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 52.0904
+
+[node name="Bat" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+acceleration = 80
+max_speed = 90
+friction = 150
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -12 )
+region_enabled = true
+region_rect = Rect2( 443, 140, 14, 8 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -11.601 )
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" parent="." index="2"]
+visible = false
+occluder = SubResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/bat_move = SubResource( 7 )
+
+[node name="HitAnimation" type="AnimationPlayer" parent="." index="5"]
+anims/bat_hit = SubResource( 3 )
+
+[node name="Hurtbox" parent="." index="6"]
+position = Vector2( 0, -16.4217 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+position = Vector2( 0, 4.82071 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+position = Vector2( 0, -11.601 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+visible = false
+position = Vector2( 0, -16.4217 )
+shape = SubResource( 6 )
+
+[node name="Stats" parent="." index="9"]
+max_health = 4
+damage = 2.0
+
+[editable path="Hurtbox"]
+
+[editable path="Hitbox"]
+
+[editable path="PlayerDetectionZone"]

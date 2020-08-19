@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Tilesheets/images/colored_transparent_packed_234.png" type="Texture" id=1]
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Gold.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 9.0
+
+[node name="Gold" groups=[
+"Gold",
+] instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 1 )
+region_rect = Rect2( 699, 71, 12, 10 )
+
+[node name="CollisionShape2D" parent="PickupRadius" index="0"]
+shape = SubResource( 1 )

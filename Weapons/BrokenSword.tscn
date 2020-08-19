@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Weapons/BrokenSwordSprite.tscn" type="PackedScene" id=2]
+
+[node name="BrokenSword" instance=ExtResource( 1 )]
+attack_damage = 2.0
+
+[node name="Body" parent="." index="0"]
+position = Vector2( -1.34449, 0 )
+
+[node name="BrokenSwordSprite" parent="Body" index="0" instance=ExtResource( 2 )]
+
+[node name="WeaponSprite" parent="Body" index="1"]
+visible = false
+self_modulate = Color( 0.870588, 0.870588, 0.870588, 1 )
+offset = Vector2( 3, -3 )
+region_rect = Rect2( 617.083, 120, 9.91656, 9.89912 )
+
+[node name="Hitbox" parent="Body" index="2"]
+position = Vector2( 0.884882, -0.884881 )
+
+[editable path="Body/Hitbox"]

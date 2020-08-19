@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.18449, 1.1957 )
+
+[node name="Fists" instance=ExtResource( 1 )]
+scale = Vector2( 1, 1 )
+attack_duration = 0.1
+attack_damage = 0.5
+attack_range = 10
+attack_knockback = 50
+
+[node name="Body" parent="." index="0"]
+rotation = 0.0
+
+[node name="WeaponSprite" parent="Body" index="0"]
+region_rect = Rect2( 471, 28, 2, 2 )
+
+[node name="CollisionShape2D" parent="Body/Hitbox" index="0"]
+visible = false
+rotation = 0.0
+shape = SubResource( 1 )
+
+[editable path="Body/Hitbox"]

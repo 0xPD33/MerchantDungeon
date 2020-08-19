@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/Font/manaspc.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/DialogPanel.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.498039, 0.498039, 0.498039, 0.196078 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 6
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "animate_dialogue"
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/Dialogue:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/Answers:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="DialoguePanel" type="Panel"]
+margin_left = -40.0
+margin_top = -60.0
+margin_right = 40.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 80.0
+margin_bottom = 60.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Label" parent="VBoxContainer"]
+margin_top = 10.0
+margin_right = 80.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 3 )
+text = "Hey, welcome to my Shop!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Answers" type="Label" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 80.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 3 )
+text = "[E] continue 
+[ESC] cancel"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/animate_dialogue = SubResource( 4 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
