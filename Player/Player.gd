@@ -19,6 +19,16 @@ var can_sprint = true
 var can_attack = true
 
 var hit = false
+var dead = false
+
+# TUTORIAL
+# --------
+
+var did_move = false
+var did_attack = false
+var did_sprint = false
+
+# --------
 
 var weapon_equipped = false
 
@@ -30,6 +40,8 @@ onready var weapon_position = $WeaponPosition
 
 onready var anim_player = $AnimationPlayer
 onready var hit_anim = $HitAnimation
+onready var death_anim = $DeathAnimation
+
 onready var sprint_particles = $SprintParticles
 
 onready var hurtbox = $Hurtbox
@@ -51,10 +63,11 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	_input_vector(delta)
-	_move_player()
-	if weapon_equipped:
-		_move_weapon()
+	if !dead:
+		_input_vector(delta)
+		_move_player()
+		if weapon_equipped:
+			_move_weapon()
 
 
 func _input_vector(delta):
@@ -78,18 +91,23 @@ func _input(_event):
 		if Input.is_action_just_pressed("attack") and can_attack and weapon.can_attack:
 			can_attack = false
 			weapon.attack()
-		if Input.is_action_just_pressed("test"):
+			did_attack = true
+		if Input.is_action_just_pressed("drop_weapon"):
 			drop_weapon()
+	if Input.is_action_just_pressed("use_health_potion"):
+		use_health_potion()
 
 
 func _move_player():
 	move_and_slide(velocity)
+	did_move = true
 	
 	if Input.is_action_pressed("sprint") and can_sprint:
 		sprint_particles_enabled(true)
 		anim_player.playback_speed = 2
 		set_max_speed(sprint_speed)
 		if moving:
+			did_sprint = true
 			stats.stamina -= 0.1
 	else:
 		sprint_particles_enabled(false)
@@ -115,7 +133,8 @@ func equip_weapon(new_weapon):
 	weapon_position.add_child(new_weapon)  
 	weapon = new_weapon
 	weapon.position.x += weapon.weapon_distance
-	weapon_hitbox = weapon.get_node("Body/Hitbox")
+	if new_weapon.is_in_group("MeleeWeapon"):
+		weapon_hitbox = weapon.get_node("Body/Hitbox")
 	weapon_equipped = true
 
 
@@ -138,6 +157,20 @@ func pickup_item(item):
 	elif item.is_in_group("Heart"):
 		if stats.health < stats.max_health:
 			stats.health += item.heal_amount
+	elif item.is_in_group("HealthPotion"):
+		items.health_potions += 1
+		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
+
+
+func use_health_potion():
+	if items.health_potions > 0:
+		heal_player()
+		items.health_potions -= 1
+		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
+
+
+func heal_player():
+	stats.health = stats.max_health
 
 
 func set_sprint_particles_direction():
@@ -160,6 +193,9 @@ func create_popup_damage(dmg, color, size):
 
 
 func _on_no_health():
+	dead = true
+	death_anim.play("player_death")
+	yield(death_anim, "animation_finished")
 	queue_free()
 
 

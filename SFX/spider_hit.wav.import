@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spider_hit.wav-2f56692e5f84f4031617fa1726ed59cf.sample"
+
+[deps]
+
+source_file="res://SFX/spider_hit.wav"
+dest_files=[ "res://.import/spider_hit.wav-2f56692e5f84f4031617fa1726ed59cf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

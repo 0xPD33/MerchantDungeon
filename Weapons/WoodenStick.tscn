@@ -9,9 +9,9 @@ extents = Vector2( 1.19574, 6 )
 [node name="WoodenStick" instance=ExtResource( 1 )]
 attack_duration = 0.15
 attack_range = 25
-attack_knockback = 80
+attack_knockback = 75
 
-[node name="Body" parent="." index="0"]
+[node name="Body" parent="." index="1"]
 position = Vector2( 0, 0.5 )
 
 [node name="WeaponSprite" parent="Body" index="0"]

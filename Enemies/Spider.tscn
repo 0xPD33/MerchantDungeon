@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Animations/spider_hit.tres" type="Animation" id=4]
 [ext_resource path="res://Animations/spider_move.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/spider_death.tres" type="Animation" id=6]
+[ext_resource path="res://SFX/spider_death.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/spider_hit.wav" type="AudioStream" id=8]
+[ext_resource path="res://SFX/spider_idle.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.4245
@@ -68,6 +71,20 @@ anims/spider_hit = ExtResource( 4 )
 [node name="DeathAnimation" parent="." index="6"]
 anims/spider_death = ExtResource( 6 )
 
+[node name="IdleAudio" parent="." index="8"]
+stream = ExtResource( 9 )
+volume_db = -30.0
+
+[node name="HitAudio" parent="." index="9"]
+stream = ExtResource( 8 )
+volume_db = -30.0
+pitch_scale = 1.2
+
+[node name="DeathAudio" parent="." index="10"]
+stream = ExtResource( 7 )
+volume_db = -30.0
+pitch_scale = 0.9
+
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 visible = false
 shape = SubResource( 4 )
@@ -81,7 +98,7 @@ shape = SubResource( 5 )
 visible = false
 shape = SubResource( 6 )
 
-[node name="Stats" parent="." index="10"]
+[node name="Stats" parent="." index="14"]
 max_health = 3
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 

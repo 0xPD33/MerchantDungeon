@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=1]
+[ext_resource path="res://Weapons/MagicWeapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Projectiles/FireProjectile.tscn" type="PackedScene" id=3]
+
+[node name="WoodenStaff" instance=ExtResource( 2 )]
+projectile = ExtResource( 3 )
+attack_duration = 0.25
+attack_range = 20
+weapon_distance = 13
+
+[node name="WeaponSprite" parent="Body" index="0"]
+self_modulate = Color( 0.564706, 0.411765, 0.227451, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 545, 69, 14, 14 )

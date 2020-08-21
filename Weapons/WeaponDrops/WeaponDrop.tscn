@@ -24,7 +24,6 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 0.537255, 0.34902, 0.12549, 1 )
 region_rect = Rect2( 618, 120, 9, 9 )
 __meta__ = {
 "_editor_description_": ""

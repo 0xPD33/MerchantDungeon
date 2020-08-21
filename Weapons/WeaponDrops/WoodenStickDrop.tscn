@@ -12,14 +12,12 @@ scale = Vector2( 0.5, 0.5 )
 linked_weapon = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
+self_modulate = Color( 0.537255, 0.34902, 0.12549, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
 shape = SubResource( 1 )
-
-[node name="AnimationPlayer" parent="." index="2"]
-autoplay = "drop_move"
 
 [node name="DropPanel" parent="." index="3"]
 margin_left = 12.0

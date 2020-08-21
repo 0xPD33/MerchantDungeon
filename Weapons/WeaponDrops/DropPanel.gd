@@ -28,12 +28,20 @@ func get_properties():
 	if "IronSword" in get_parent().name:
 		actual_weapon_name = "Iron Sword"
 		damage = 3
+	if "WoodenStaff" in get_parent().name:
+		actual_weapon_name = "Wooden Staff"
+		damage = 1
 
 
 func setup_text():
 	weapon_name.text = actual_weapon_name
-	if damage > current_weapon.attack_damage:
-		damage_label.text = "Dmg: " + str(damage) + " (current:  " + str(current_weapon.attack_damage) + ")"
+	var current_damage
+	if current_weapon.is_in_group("MeleeWeapon"):
+		current_damage = current_weapon.attack_damage
+	elif current_weapon.is_in_group("MagicWeapon"):
+		current_damage = current_weapon.projectile_damage
+	if damage > current_damage:
+		damage_label.text = "Dmg: " + str(damage) + " (current:  " + str(current_damage) + ")"
 	else:
 		damage_label.text = "Dmg: " + str(damage)
 

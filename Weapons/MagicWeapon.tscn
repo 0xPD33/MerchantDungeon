@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Weapons/MagicWeapon.gd" type="Script" id=2]
+
+[node name="MagicWeapon" type="Node2D" groups=[
+"MagicWeapon",
+]]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Body" type="Node2D" parent="."]
+rotation = 0.785398
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="WeaponSprite" type="Sprite" parent="Body"]
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ProjectilePosition" type="Position2D" parent="Body"]
+rotation = -0.785398
+
+[node name="AttackTween" type="Tween" parent="."]

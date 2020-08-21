@@ -1,27 +1,42 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Font/manaspc.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Merchant/ShopPanel.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.498039, 0.498039, 0.498039, 0.196078 )
+draw_center = false
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.27451 )
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+
+[sub_resource type="DynamicFont" id=7]
 size = 5
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
+size = 6
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
 size = 6
 font_data = ExtResource( 1 )
 
 [node name="ShopPanel" type="Panel"]
 pause_mode = 2
 margin_left = -50.0
-margin_top = -80.0
+margin_top = -83.0
 margin_right = 50.0
+margin_bottom = -3.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -46,7 +61,10 @@ __meta__ = {
 margin_right = 92.0
 margin_bottom = 51.0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_styles/selected_focus = SubResource( 8 )
+custom_styles/bg_focus = SubResource( 9 )
+custom_styles/bg = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 auto_height = true
 
@@ -55,12 +73,30 @@ margin_top = 55.0
 margin_right = 92.0
 margin_bottom = 72.0
 size_flags_horizontal = 5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "[Arrows] select, [E] buy, [Q] cancel"
 align = 1
 valign = 1
 autowrap = true
 __meta__ = {
 "_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = 43.0
+margin_right = 60.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 10 )
+text = "Note: If you cannot select an item try using the other arrow key."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 [connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_ItemList_item_selected"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesheets/images/colored_transparent_packed_658.png" type="Texture" id=1]
+[ext_resource path="res://Merchant/ShopItems/ShopItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/HealthPotion.tscn" type="PackedScene" id=3]
+
+[node name="HealthPotionShopItem" instance=ExtResource( 2 )]
+linked_item = ExtResource( 3 )
+item_name = "Health Potion"
+item_cost = 5
+
+[node name="Sprite" parent="." index="0"]
+self_modulate = Color( 0.937255, 0.329412, 0.329412, 1 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )

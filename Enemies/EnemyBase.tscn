@@ -28,6 +28,16 @@ visible = false
 
 [node name="DeathAnimation" type="AnimationPlayer" parent="."]
 
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="IdleAudio" type="AudioStreamPlayer2D" parent="."]
+max_distance = 250.0
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 collision_layer = 32
 
@@ -41,6 +51,7 @@ script = ExtResource( 6 )
 
 [node name="Drops" type="Node" parent="."]
 script = ExtResource( 7 )
+[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]

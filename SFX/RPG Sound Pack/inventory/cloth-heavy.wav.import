@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cloth-heavy.wav-5f1a460038066c2c48006ed519f85cc5.sample"
+
+[deps]
+
+source_file="res://SFX/RPG Sound Pack/inventory/cloth-heavy.wav"
+dest_files=[ "res://.import/cloth-heavy.wav-5f1a460038066c2c48006ed519f85cc5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -32,9 +32,12 @@ func explode():
 
 
 func _on_Hurtbox_area_entered(area: Area2D):
-	if area.is_in_group("Hitbox"):
+	if area.is_in_group("Hitbox") or area.is_in_group("Projectile"):
 		if not hit:
 			hit = true
+			if area.is_in_group("Projectile"):
+				area.impact(global_position)
+				area.queue_free()
 			$AnimationPlayer.play("destroy")
 			yield($AnimationPlayer, "animation_finished")
 			for node in get_children():

@@ -9,7 +9,8 @@ var drop_chance = 50
 
 
 func allow_heart_drop():
-	if get_parent().player.stats.health < get_parent().player.stats.max_health:
+	var player = get_tree().current_scene.get_node("YSort/Player")
+	if player.stats.health < player.stats.max_health:
 		possible_drops.append(heart)
 	else:
 		possible_drops.erase(heart)

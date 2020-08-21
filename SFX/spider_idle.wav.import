@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spider_idle.wav-09c0c6fee7dc2ac24303952c2aa08508.sample"
+
+[deps]
+
+source_file="res://SFX/spider_idle.wav"
+dest_files=[ "res://.import/spider_idle.wav-09c0c6fee7dc2ac24303952c2aa08508.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

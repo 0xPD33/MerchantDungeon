@@ -21,8 +21,10 @@ func _ready():
 
 
 func _input(event):
-	if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_up"):
-		select_item()
+	if Input.is_action_just_pressed("ui_down"):
+		select_next_item()
+	if Input.is_action_just_pressed("ui_up"):
+		select_previous_item()
 	if Input.is_action_just_released("interact"):
 		if item_selected:
 			buy_item(item_selected)
@@ -30,13 +32,28 @@ func _input(event):
 		close_shop()
 
 
-func select_item():
+func select_next_item():
 	if item_list.is_selected(0):
+		item_list.select(1)
+		_on_ItemList_item_selected(1)
+	elif item_list.is_selected(1):
+		item_list.select(2)
+		_on_ItemList_item_selected(2)
+	elif item_list.is_selected(2):
+		item_list.select(0)
+		_on_ItemList_item_selected(0)
+
+
+func select_previous_item():
+	if item_list.is_selected(2):
 		item_list.select(1)
 		_on_ItemList_item_selected(1)
 	elif item_list.is_selected(1):
 		item_list.select(0)
 		_on_ItemList_item_selected(0)
+	elif item_list.is_selected(0):
+		item_list.select(2)
+		_on_ItemList_item_selected(2)
 
 
 func open_shop():
@@ -57,6 +74,8 @@ func load_individual_items():
 	available_items.append(item1)
 	item2 = preload("res://Merchant/ShopItems/IronDaggerShopItem.tscn").instance()
 	available_items.append(item2)
+	item3 = preload("res://Merchant/ShopItems/HealthPotionShopItem.tscn").instance()
+	available_items.append(item3)
 
 
 func load_item_list():
@@ -74,7 +93,6 @@ func buy_item(item):
 		get_parent().item_spawner.spawn_item(item.linked_item, get_parent().get_node("ItemSpawnPosition").global_position)
 		player.items.gold -= item.item_cost
 		get_tree().call_group("HUD", "set_gold", player.items.gold)
-		close_shop()
 
 
 func _on_ItemList_item_selected(index: int):
@@ -82,4 +100,6 @@ func _on_ItemList_item_selected(index: int):
 		item_selected = available_items[0]
 	elif item_list.is_selected(1):
 		item_selected = available_items[1]
+	elif item_list.is_selected(2):
+		item_selected = available_items[2]
 

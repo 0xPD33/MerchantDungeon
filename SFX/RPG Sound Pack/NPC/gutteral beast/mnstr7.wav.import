@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mnstr7.wav-fed8957ebce029d2102a0025e53586bc.sample"
+
+[deps]
+
+source_file="res://SFX/RPG Sound Pack/NPC/gutteral beast/mnstr7.wav"
+dest_files=[ "res://.import/mnstr7.wav-fed8957ebce029d2102a0025e53586bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

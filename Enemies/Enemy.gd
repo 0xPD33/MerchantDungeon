@@ -29,6 +29,9 @@ onready var move_anim = $MoveAnimation
 onready var hit_anim = $HitAnimation
 onready var death_anim = $DeathAnimation
 
+onready var idle_timer = $IdleTimer
+onready var idle_audio = $IdleAudio
+
 onready var player_detection_zone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
 onready var hitbox = $Hitbox
@@ -42,6 +45,7 @@ onready var normal_speed = max_speed
 func _ready():
 	hitbox.damage = stats.damage
 	add_to_group("Enemy")
+	idle_timer.start()
 
 
 func _physics_process(delta: float):
@@ -89,4 +93,5 @@ func create_hit_effect(pos):
 	var instance = HIT_EFFECT.instance()
 	instance.position = pos
 	get_tree().current_scene.add_child(instance)
+
 

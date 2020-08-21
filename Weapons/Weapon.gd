@@ -20,6 +20,7 @@ onready var origin_pos = weapon_body.position
 onready var hitbox = $Body/Hitbox
 onready var attack_tween = $AttackTween
 
+onready var swing_audio = $SwingAudio
 onready var raycast = $RayCast2D
 
 signal attack_done
@@ -55,6 +56,7 @@ func attack():
 		attack_tween.interpolate_property(weapon_body, "position:x", attack_range, origin_pos.x, attack_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT, attack_duration)
 		attack_tween.interpolate_callback(self, attack_cooldown, "_attack_complete")
 		attack_tween.start()
+		swing_audio.play()
 		hitbox.monitorable = true
 	else:
 		return
