@@ -1,4 +1,4 @@
 extends Node
 
-var gold = 0
+export (int) var gold = 0
 

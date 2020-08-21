@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
+const HIT_EFFECT = preload("res://Effects/HitEffect.tscn")
 
 export var acceleration = 100
 export var max_speed = 50
@@ -28,10 +29,12 @@ onready var move_anim = $MoveAnimation
 onready var hit_anim = $HitAnimation
 onready var death_anim = $DeathAnimation
 
-onready var stats = $Stats
 onready var player_detection_zone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
 onready var hitbox = $Hitbox
+
+onready var stats = $Stats
+onready var drops = $Drops
 
 onready var normal_speed = max_speed
 
@@ -77,4 +80,13 @@ func create_popup_damage(dmg, color, size):
 	instance.scale = size
 	instance.position = get_global_transform().origin
 	instance.popup_damage(dmg)
+
+
+func create_hit_effect(pos):
+	randomize()
+	pos.x += rand_range(-2, 2)
+	pos.y += rand_range(-2, 2)
+	var instance = HIT_EFFECT.instance()
+	instance.position = pos
+	get_tree().current_scene.add_child(instance)
 

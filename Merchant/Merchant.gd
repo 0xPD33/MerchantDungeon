@@ -9,6 +9,8 @@ var introduced = false
 
 onready var evil_anim = $EvilAnimation
 onready var dialogue_panel = $DialoguePanel
+onready var shop_panel = $ShopPanel
+onready var item_spawner = $ItemSpawner
 
 
 func _ready():
@@ -86,7 +88,8 @@ func talk(answer = ""):
 				match answer:
 					"A":
 						dialogue_state = 4
-						show_stock()
+						dialogue_panel.hide()
+						show_shop()
 					"B":
 						dialogue_state = 3
 						dialogue_panel.dialogue = "Okay then. Have a good one!"
@@ -99,8 +102,8 @@ func talk(answer = ""):
 						dialogue_panel.hide()
 
 
-func show_stock():
-	pass
+func show_shop():
+	shop_panel.open_shop()
 
 
 func _on_InteractRange_body_entered(body: Node):

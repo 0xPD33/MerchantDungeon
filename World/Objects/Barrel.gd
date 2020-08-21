@@ -1,13 +1,20 @@
 extends StaticBody2D
 
-export (PackedScene) var linked_item_drop
+export (PackedScene) var weapon_drop
 
 const EXPLOSION = preload("res://Effects/Explosion1.tscn")
+
+var player
 
 var hit = false
 var explosion_done = false
 
-onready var item_spawner = $ItemSpawner
+onready var drops = $Drops
+
+
+func _ready():
+	player = get_tree().current_scene.get_node("YSort/Player")
+	add_to_group("Barrel")
 
 
 func explode():
@@ -17,13 +24,11 @@ func explode():
 	yield(instance.get_node("AnimationPlayer"), "animation_finished")
 	instance.queue_free()
 	explosion_done = true
-	spawn_item()
+	if weapon_drop != null:
+		drops.drop_weapon()
+	else:
+		drops.drop_item()
 	queue_free()
-
-
-func spawn_item():
-	if linked_item_drop != null:
-		item_spawner.spawn_item(linked_item_drop, global_position)
 
 
 func _on_Hurtbox_area_entered(area: Area2D):

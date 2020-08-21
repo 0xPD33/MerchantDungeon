@@ -8,7 +8,7 @@ var can_take = false
 
 
 func _ready():
-	player = get_tree().current_scene.get_node("YSort/Player/")
+	player = get_tree().current_scene.get_node("YSort/Player")
 
 
 func _input(event):
@@ -24,4 +24,9 @@ func take_weapon():
 func _on_PickupRadius_body_entered(body: Node):
 	if body.is_in_group("Player"):
 		can_take = true
+
+
+func _on_PickupRadius_body_exited(body: Node):
+	if body.is_in_group("Player"):
+		can_take = false
 

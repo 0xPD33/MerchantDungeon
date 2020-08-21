@@ -10,12 +10,12 @@ onready var gold_sprite = $Sprite
 
 func _ready():
 	randomize()
-	gold_amount = randi() % 5 + 1
+	gold_amount = randi() % 3 + 1
 	set_texture()
 
 
 func set_texture():
-	if gold_amount > 3:
+	if gold_amount == 3:
 		gold_sprite.texture = big_texture
 	else:
 		gold_sprite.texture = small_texture

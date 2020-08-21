@@ -78,6 +78,8 @@ func _input(_event):
 		if Input.is_action_just_pressed("attack") and can_attack and weapon.can_attack:
 			can_attack = false
 			weapon.attack()
+		if Input.is_action_just_pressed("test"):
+			drop_weapon()
 
 
 func _move_player():
@@ -112,25 +114,30 @@ func equip_weapon(new_weapon):
 	
 	weapon_position.add_child(new_weapon)  
 	weapon = new_weapon
-	weapon.position.x += 12
-	weapon_distance = weapon_position.position.length()
+	weapon.position.x += weapon.weapon_distance
 	weapon_hitbox = weapon.get_node("Body/Hitbox")
 	weapon_equipped = true
+
+
+func drop_weapon():
+	var format_path = "res://Weapons/WeaponDrops/%sDrop.tscn"
+	var actual_path = format_path % weapon.name
+	var weapon_drop = load(actual_path).instance()
+	weapon_drop.global_position = global_position
+	get_tree().current_scene.get_node("YSort/Items").add_child(weapon_drop)
+	weapon_position.get_child(0).queue_free()
+	equip_fists()
 
 
 func pickup_item(item):
 	if item.is_in_group("Gold"):
 		items.gold += item.gold_amount
 		get_tree().call_group("HUD", "set_gold", items.gold)
-		if items.gold > 2:
+		if items.gold >= 3:
 			get_tree().call_group("HUD", "change_gold_texture", item.big_texture)
 	elif item.is_in_group("Heart"):
 		if stats.health < stats.max_health:
 			stats.health += item.heal_amount
-
-
-func move_to_hotbar():
-	pass
 
 
 func set_sprint_particles_direction():

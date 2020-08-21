@@ -22,6 +22,12 @@ func get_properties():
 	if "BrokenSword" in get_parent().name:
 		actual_weapon_name = "Broken Sword"
 		damage = 2
+	if "IronDagger" in get_parent().name:
+		actual_weapon_name = "Iron Dagger"
+		damage = 2
+	if "IronSword" in get_parent().name:
+		actual_weapon_name = "Iron Sword"
+		damage = 3
 
 
 func setup_text():

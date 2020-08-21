@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=2]
+
+[node name="IronDagger" instance=ExtResource( 1 )]
+attack_duration = 0.15
+attack_damage = 2.0
+attack_range = 25
+attack_knockback = 80
+
+[node name="WeaponSprite" parent="Body" index="0"]
+self_modulate = Color( 0.490196, 0.490196, 0.490196, 1 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 581, 105, 10, 10 )
+
+[editable path="Body/Hitbox"]

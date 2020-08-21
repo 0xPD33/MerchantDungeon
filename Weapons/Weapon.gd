@@ -6,6 +6,8 @@ export (float) var attack_damage = 1
 export (int) var attack_range = 30
 export (int) var attack_knockback = 100
 
+export (int) var weapon_distance = 12
+
 var attack_cooldown = attack_duration * 2
 var attack_direction
 

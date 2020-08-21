@@ -37,7 +37,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRadius"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "drop_move"
 anims/drop_move = SubResource( 1 )
 
 [node name="DropPanel" parent="." instance=ExtResource( 2 )]
 [connection signal="body_entered" from="PickupRadius" to="." method="_on_PickupRadius_body_entered"]
+[connection signal="body_exited" from="PickupRadius" to="." method="_on_PickupRadius_body_exited"]

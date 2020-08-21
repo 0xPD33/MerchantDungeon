@@ -5,8 +5,9 @@
 
 [node name="BrokenSword" instance=ExtResource( 1 )]
 attack_damage = 2.0
+weapon_distance = 14
 
-[node name="Body" parent="." index="0"]
+[node name="Body" parent="." index="1"]
 position = Vector2( -1.34449, 0 )
 
 [node name="BrokenSwordSprite" parent="Body" index="0" instance=ExtResource( 2 )]

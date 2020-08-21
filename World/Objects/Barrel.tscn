@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=1]
 [ext_resource path="res://Items/ItemSpawner.gd" type="Script" id=2]
 [ext_resource path="res://World/Objects/Barrel.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/Drops.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 5 )
@@ -74,4 +75,7 @@ shape = SubResource( 3 )
 
 [node name="ItemSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource( 4 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

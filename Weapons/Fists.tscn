@@ -11,8 +11,9 @@ attack_duration = 0.1
 attack_damage = 0.5
 attack_range = 10
 attack_knockback = 50
+weapon_distance = 11
 
-[node name="Body" parent="." index="0"]
+[node name="Body" parent="." index="1"]
 rotation = 0.0
 
 [node name="WeaponSprite" parent="Body" index="0"]

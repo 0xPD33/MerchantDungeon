@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=1]
+[ext_resource path="res://Weapons/WeaponDrops/IronDaggerDrop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Merchant/ShopItems/ShopItem.tscn" type="PackedScene" id=3]
+
+[node name="IronDaggerShopItem" instance=ExtResource( 3 )]
+linked_item = ExtResource( 2 )
+item_name = "Iron Dagger"
+item_cost = 15
+
+[node name="Sprite" parent="." index="0"]
+self_modulate = Color( 0.490196, 0.490196, 0.490196, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 581, 105, 10, 10 )

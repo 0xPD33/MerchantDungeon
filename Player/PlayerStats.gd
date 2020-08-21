@@ -1,9 +1,9 @@
 extends Node
 
-export(int) var max_health = 10
+export(int) var max_health = 6
 onready var health = max_health setget set_health
 
-export(int) var max_stamina = 10
+export(int) var max_stamina = 12
 onready var stamina = max_stamina setget set_stamina
 
 signal no_health

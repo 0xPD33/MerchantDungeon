@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 10.1643
+
+[node name="Cobwebs" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 35, 256, 14, 14 )
+
+[node name="SlowArea" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowArea"]
+shape = SubResource( 1 )

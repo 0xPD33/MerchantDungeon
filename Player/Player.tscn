@@ -124,7 +124,10 @@ current = true
 texture = ExtResource( 6 )
 texture_scale = 0.25
 shadow_enabled = true
-shadow_gradient_length = 5.0
+shadow_buffer_size = 1024
+shadow_gradient_length = 10.0
+shadow_filter = 2
+shadow_filter_smooth = 32.0
 
 [node name="WeaponPosition" type="Position2D" parent="."]
 script = SubResource( 5 )
@@ -145,8 +148,6 @@ anims/move_stop = SubResource( 8 )
 anims/player_hit = SubResource( 9 )
 
 [node name="Stats" parent="." instance=ExtResource( 4 )]
-max_health = 6
-max_stamina = 12
 
 [node name="Items" type="Node" parent="."]
 script = ExtResource( 3 )
