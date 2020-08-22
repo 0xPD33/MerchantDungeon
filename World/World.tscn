@@ -372,7 +372,7 @@ position = Vector2( 448, 928 )
 [node name="Items" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -664, 416 )
+position = Vector2( -320, 136 )
 
 [node name="Merchant" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( -80, 640 )
