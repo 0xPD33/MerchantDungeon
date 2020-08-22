@@ -3,6 +3,8 @@ extends "res://Items/Item.gd"
 var small_texture = preload("res://Tilesheets/images/colored_transparent_packed_215.png")
 var big_texture = preload("res://Tilesheets/images/colored_transparent_packed_234.png")
 
+var pickup_audio = preload("res://SFX/RPG Sound Pack/inventory/coin.wav")
+
 var gold_amount = 1
 
 onready var gold_sprite = $Sprite

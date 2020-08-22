@@ -14,15 +14,14 @@ enum {
 	CHARGE
 }
 
+var state = IDLE
+
 var hit = false
 var dead = false
 
 var player = null
 
-var state = IDLE
-
 var velocity = Vector2.ZERO
-
 var knockback = Vector2.ZERO
 
 onready var move_anim = $MoveAnimation

@@ -16,9 +16,8 @@ func allow_heart_drop():
 		possible_drops.erase(heart)
 
 
-func drop_weapon():
-	if get_parent().weapon_drop != null:
-		spawn_item(get_parent().weapon_drop, get_parent().global_position)
+func drop_unique_item():
+	spawn_item(get_parent().unique_drop, get_parent().global_position)
 
 
 func drop_item():

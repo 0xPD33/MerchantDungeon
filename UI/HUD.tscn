@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/HUD.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UI/Font/manaspc.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://UI/HelpPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Tilesheets/images/colored_transparent_packed_658.png" type="Texture" id=7]
+[ext_resource path="res://DeathLabel.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -121,3 +122,5 @@ align = 1
 valign = 1
 
 [node name="HelpPanel" parent="." instance=ExtResource( 6 )]
+
+[node name="DeathLabel" parent="." instance=ExtResource( 8 )]

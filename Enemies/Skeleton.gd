@@ -14,18 +14,20 @@ func _physics_process(delta: float):
 
 
 func _on_Hurtbox_area_entered(area: Area2D):
-	if area.is_in_group("Hitbox") or area.is_in_group("Projectile") and !hit:
-		hit = true
-		stats.health -= area.damage
-		hurtbox.start_invincibility(0.5)
-		if area.is_in_group("Hitbox"):
-			create_hit_effect(global_position)
-		create_popup_damage(area.damage, Color.white, Vector2(0.3, 0.3))
-		hit_anim.play("skeleton_hit")
-		knockback = area.knockback_vector * (area.knockback_amount * stats.knockback_multiplier)
-		if area.is_in_group("Projectile"):
-			area.impact(global_position)
-			area.queue_free()
+	if area.is_in_group("Hitbox") or area.is_in_group("Projectile"):
+		if !hit:
+			hit = true
+			stats.health -= area.damage
+			hurtbox.start_invincibility(0.5)
+			if area.is_in_group("Hitbox"):
+				create_hit_effect(global_position)
+			create_popup_damage(area.damage, Color.white, Vector2(0.3, 0.3))
+			hit_anim.play("skeleton_hit")
+			knockback = area.knockback_vector * (area.knockback_amount * stats.knockback_multiplier)
+			if area.is_in_group("Projectile"):
+				area.impact(global_position)
+				area.queue_free()
+			hit = false
 
 
 func _on_Stats_no_health():
@@ -37,6 +39,7 @@ func _on_Stats_no_health():
 
 
 func _on_IdleTimer_timeout():
+	randomize()
 	idle_audio.pitch_scale = rand_range(0.9, 1.1)
 	idle_audio.play()
 

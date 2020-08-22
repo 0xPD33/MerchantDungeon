@@ -18,6 +18,8 @@ onready var potion_count = $HealthPotionContainer/PotionCount
 
 onready var help_panel = $HelpPanel
 
+onready var death_label = $DeathLabel
+
 
 func _ready():
 	get_player()
@@ -52,6 +54,10 @@ func show_help():
 
 func hide_help():
 	help_panel.hide_help()
+
+
+func show_death_label():
+	death_label.get_node("AnimationPlayer").play("death_label_anim")
 
 
 func setup_bars():

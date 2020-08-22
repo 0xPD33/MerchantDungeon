@@ -1,6 +1,6 @@
 extends Node2D
 
-var start_delay : float = 1.0
+var start_delay : float = 2.0
 
 
 func _ready():
@@ -8,6 +8,11 @@ func _ready():
 	if !Global.tutorial_shown:
 		show_help()
 	Global.game_started = true
+
+
+func _input(event):
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 
 func show_help():

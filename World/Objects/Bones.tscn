@@ -5,6 +5,7 @@
 [node name="Bones" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 1, 256, 14, 14 )

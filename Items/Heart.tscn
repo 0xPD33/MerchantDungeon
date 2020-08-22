@@ -44,6 +44,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="." index="2"]
@@ -53,5 +54,4 @@ color = Color( 1, 0.309804, 0.388235, 1 )
 energy = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-autoplay = "heart_idle"
 anims/heart_idle = SubResource( 2 )

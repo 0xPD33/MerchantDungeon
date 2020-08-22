@@ -21,15 +21,6 @@ var can_attack = true
 var hit = false
 var dead = false
 
-# TUTORIAL
-# --------
-
-var did_move = false
-var did_attack = false
-var did_sprint = false
-
-# --------
-
 var weapon_equipped = false
 
 var weapon
@@ -37,6 +28,9 @@ var weapon_distance
 var weapon_hitbox
 
 onready var weapon_position = $WeaponPosition
+
+onready var potion_sound = $PotionSound
+onready var pickup_sound = $PickupSound
 
 onready var anim_player = $AnimationPlayer
 onready var hit_anim = $HitAnimation
@@ -91,7 +85,6 @@ func _input(_event):
 		if Input.is_action_just_pressed("attack") and can_attack and weapon.can_attack:
 			can_attack = false
 			weapon.attack()
-			did_attack = true
 		if Input.is_action_just_pressed("drop_weapon"):
 			drop_weapon()
 	if Input.is_action_just_pressed("use_health_potion"):
@@ -100,14 +93,12 @@ func _input(_event):
 
 func _move_player():
 	move_and_slide(velocity)
-	did_move = true
 	
 	if Input.is_action_pressed("sprint") and can_sprint:
 		sprint_particles_enabled(true)
-		anim_player.playback_speed = 2
+		anim_player.playback_speed = 1.5
 		set_max_speed(sprint_speed)
 		if moving:
-			did_sprint = true
 			stats.stamina -= 0.1
 	else:
 		sprint_particles_enabled(false)
@@ -128,7 +119,8 @@ func equip_fists():
 
 func equip_weapon(new_weapon):
 	if weapon_position.get_children():
-		weapon_position.get_child(0).queue_free()
+		for _weapon in weapon_position.get_children():
+			_weapon.queue_free()
 	
 	weapon_position.add_child(new_weapon)  
 	weapon = new_weapon
@@ -137,19 +129,20 @@ func equip_weapon(new_weapon):
 		weapon_hitbox = weapon.get_node("Body/Hitbox")
 	weapon_equipped = true
 
-# TODO: fix weapon dropping
 
 func drop_weapon():
-	var format_path = "res://Weapons/WeaponDrops/%sDrop.tscn"
-	var actual_path = format_path % weapon.name
-	var weapon_drop = load(actual_path).instance()
-	weapon_drop.global_position = global_position
-	get_tree().current_scene.get_node("YSort/Items").add_child(weapon_drop)
-	weapon_position.get_child(0).queue_free()
-	equip_fists()
+	if !weapon.is_in_group("Fists"):
+		var format_path = "res://Weapons/WeaponDrops/%sDrop.tscn"
+		var actual_path = format_path % weapon.name
+		var weapon_drop = load(actual_path).instance()
+		weapon_drop.global_position = global_position
+		get_tree().current_scene.get_node("YSort/Items").add_child(weapon_drop)
+		weapon_position.get_child(0).queue_free()
+		equip_fists()
 
 
 func pickup_item(item):
+	pickup_audio(item.pickup_audio)
 	if item.is_in_group("Gold"):
 		items.gold += item.gold_amount
 		get_tree().call_group("HUD", "set_gold", items.gold)
@@ -163,11 +156,23 @@ func pickup_item(item):
 		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
 
 
+func pickup_audio(stream):
+	pickup_sound.stream = stream
+	pickup_sound.play()
+
+
 func use_health_potion():
 	if items.health_potions > 0:
 		heal_player()
+		play_potion_sound()
 		items.health_potions -= 1
 		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
+
+
+func play_potion_sound():
+	randomize()
+	potion_sound.pitch_scale = rand_range(0.9, 1.1)
+	potion_sound.play()
 
 
 func heal_player():
@@ -197,6 +202,7 @@ func _on_no_health():
 	dead = true
 	death_anim.play("player_death")
 	yield(death_anim, "animation_finished")
+	get_tree().call_group("HUD", "show_death_label")
 	queue_free()
 
 
@@ -215,4 +221,10 @@ func _on_Hurtbox_area_entered(area: Area2D):
 		create_popup_damage(area.damage, Color.white, Vector2(0.4, 0.4))
 		hit_anim.play("player_hit")
 		hurtbox.start_invincibility(0.5)
+		hit = false
+	if area.is_in_group("BossProjectile") and !hit:
+		hit = true
+		if weapon_equipped:
+			drop_weapon()
+		hit = false
 

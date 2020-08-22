@@ -1,8 +1,6 @@
 extends StaticBody2D
 
-# TODO: change weapon_drop to unique_drop and make some barrels drop health potions
-
-export (PackedScene) var weapon_drop
+export (PackedScene) var unique_drop
 
 const EXPLOSION = preload("res://Effects/Explosion1.tscn")
 
@@ -26,8 +24,8 @@ func explode():
 	yield(instance.get_node("AnimationPlayer"), "animation_finished")
 	instance.queue_free()
 	explosion_done = true
-	if weapon_drop != null:
-		drops.drop_weapon()
+	if unique_drop != null:
+		drops.drop_unique_item()
 	else:
 		drops.drop_item()
 	queue_free()

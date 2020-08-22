@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
+[ext_resource path="res://SFX/boss_wall_place.wav" type="AudioStream" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 7.2 )
+
+[node name="BossWall" type="StaticBody2D"]
+scale = Vector2( 1, 5 )
+collision_layer = 2
+collision_mask = 20
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 461, 256, 12, 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="PlaceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -30.0
+autoplay = true
+max_distance = 500.0

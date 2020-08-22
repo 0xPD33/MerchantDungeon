@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Boss/BossFightMobSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Skeleton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Goblin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Boss/RandomTimer.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="BossFightMobSpawner" type="Area2D" groups=[
+"BossMobSpawn",
+]]
+script = ExtResource( 1 )
+possible_mob_spawns = [ ExtResource( 2 ), ExtResource( 3 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpawnTimer" type="Timer" parent="." groups=[
+"MobSpawnTimer",
+]]
+script = ExtResource( 4 )
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

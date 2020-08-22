@@ -61,6 +61,8 @@ collision_mask = 64
 visible = false
 shape = SubResource( 2 )
 
+[node name="DestroySound" type="AudioStreamPlayer2D" parent="."]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/disappear = SubResource( 3 )
 [connection signal="body_entered" from="SlowArea" to="." method="_on_SlowArea_body_entered"]
