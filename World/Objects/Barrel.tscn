@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 5 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
@@ -34,7 +34,7 @@ tracks/1/keys = {
 "values": [ 0.0, -10.0, 10.0, 0.0, -10.0, 10.0, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 10 )
 
 [node name="Barrel" type="StaticBody2D"]
@@ -64,7 +64,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/destroy = SubResource( 5 )
+anims/destroy = SubResource( 2 )
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 32
@@ -72,7 +72,7 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 visible = false
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="ItemSpawner" type="Node" parent="."]
 script = ExtResource( 2 )

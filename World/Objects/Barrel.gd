@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+# TODO: change weapon_drop to unique_drop and make some barrels drop health potions
+
 export (PackedScene) var weapon_drop
 
 const EXPLOSION = preload("res://Effects/Explosion1.tscn")

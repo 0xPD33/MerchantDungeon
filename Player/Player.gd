@@ -137,6 +137,7 @@ func equip_weapon(new_weapon):
 		weapon_hitbox = weapon.get_node("Body/Hitbox")
 	weapon_equipped = true
 
+# TODO: fix weapon dropping
 
 func drop_weapon():
 	var format_path = "res://Weapons/WeaponDrops/%sDrop.tscn"
