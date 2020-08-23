@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Animations/heart_idle.tres" type="Animation" id=2]
+[ext_resource path="res://Lightmaps/light_big.png" type="Texture" id=3]
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=4]
+[ext_resource path="res://Items/HealthUpgrade.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 14.0357
+
+[node name="HealthUpgrade" groups=[
+"HealthUpgrade",
+] instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 715, 172, 14, 12 )
+
+[node name="CollisionShape2D" parent="PickupRadius" index="0"]
+shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="." index="2"]
+texture = ExtResource( 3 )
+texture_scale = 0.2
+color = Color( 1, 0.309804, 0.388235, 1 )
+energy = 0.0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "heart_idle"
+anims/heart_idle = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}

@@ -1,9 +1,13 @@
 extends Area2D
 
-var projectile_speed = 175
+var projectile_speed = 175 setget set_projectile_speed
 var projectile_direction
 
 onready var raycast = $RayCast2D
+
+
+func set_projectile_speed(value):
+	projectile_speed = value
 
 
 func _physics_process(delta: float):

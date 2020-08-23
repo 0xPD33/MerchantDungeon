@@ -10,7 +10,7 @@ func _process(delta):
 	if entity_inside != null:
 		while is_inside:
 			slowdown()
-			return
+			break
 
 
 func slowdown():

@@ -17,7 +17,7 @@ script = ExtResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 10, 0 )
+cast_to = Vector2( 15, 0 )
 collision_mask = 2
 
 [node name="Body" type="Node2D" parent="."]
@@ -43,6 +43,6 @@ shape = SubResource( 1 )
 
 [node name="SwingAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -30.0
+volume_db = -6.0
 
 [editable path="Body/Hitbox"]

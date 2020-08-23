@@ -5,7 +5,7 @@
 [ext_resource path="res://Weapons/IronSword.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+radius = 20.0
 
 [node name="IronSwordDrop" instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
@@ -19,9 +19,6 @@ region_rect = Rect2( 596, 120, 14, 14.1417 )
 
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
 shape = SubResource( 1 )
-
-[node name="AnimationPlayer" parent="." index="2"]
-autoplay = "drop_move"
 
 [node name="DropPanel" parent="." index="3"]
 margin_left = 12.0

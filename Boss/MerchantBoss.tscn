@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
 [ext_resource path="res://Boxes/Hitbox.tscn" type="PackedScene" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Animations/boss_magic_attack.tres" type="Animation" id=10]
 [ext_resource path="res://Animations/boss_stage2.tres" type="Animation" id=11]
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -3.48021, -5.30155, -3.62052, -1.58339, -5.79529, -1.37293, -6.63714, 4.6603, -3.82687, 7.62585, 3.59775, 7.62585, 6.62195, 4.59015, 5.70995, -1.30278, 3.53518, -1.65355, 3.53518, -5.51201, 1.50071, -7.61663, -1.58606, -7.54647 )
 
 [sub_resource type="CircleShape2D" id=2]
@@ -24,7 +24,7 @@ radius = 8.87213
 [sub_resource type="CircleShape2D" id=4]
 radius = 9.0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "boss_move"
 length = 0.8
 loop = true
@@ -53,7 +53,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "boss_hit"
 length = 0.4
 tracks/0/type = "value"
@@ -67,6 +67,60 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.345098, 0.345098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "boss_death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -2.0, 2.0, 0.0, -4.0, 4.0, 0.0, -8.0, 8.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.9, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("DeathSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0279904,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.1 )
 }
 
 [node name="MerchantBoss" type="KinematicBody2D" groups=[
@@ -83,7 +137,7 @@ region_rect = Rect2( 478, 69, 13, 14 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-occluder = SubResource( 5 )
+occluder = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -105,7 +159,6 @@ visible = false
 shape = SubResource( 4 )
 
 [node name="ProjectileShootPosition" type="Position2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="ProjectileShootTimer" type="Timer" parent="."]
 process_mode = 0
@@ -113,12 +166,15 @@ wait_time = 5.0
 
 [node name="StageSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = -40.0
+volume_db = -6.0
 max_distance = 250.0
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -30.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -3.0
 
 [node name="StageAnimation" type="AnimationPlayer" parent="."]
 anims/boss_stage1 = ExtResource( 7 )
@@ -128,12 +184,13 @@ anims/boss_stage2 = ExtResource( 11 )
 anims/boss_magic_attack = ExtResource( 10 )
 
 [node name="MoveAnimation" type="AnimationPlayer" parent="."]
-anims/boss_move = SubResource( 6 )
+anims/boss_move = SubResource( 5 )
 
 [node name="HitAnimation" type="AnimationPlayer" parent="."]
-anims/boss_hit = SubResource( 7 )
+anims/boss_hit = SubResource( 6 )
 
 [node name="DeathAnimation" type="AnimationPlayer" parent="."]
+anims/boss_death = SubResource( 7 )
 
 [node name="BossStats" type="Node" parent="."]
 script = ExtResource( 8 )

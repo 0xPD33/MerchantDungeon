@@ -5,7 +5,7 @@
 [ext_resource path="res://Weapons/IronDagger.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+radius = 18.0
 
 [node name="IronDaggerDrop" instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
@@ -19,9 +19,6 @@ region_rect = Rect2( 581, 105, 10, 10 )
 
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
 shape = SubResource( 1 )
-
-[node name="AnimationPlayer" parent="." index="2"]
-autoplay = "drop_move"
 
 [node name="DropPanel" parent="." index="3"]
 margin_left = 12.0

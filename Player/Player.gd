@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
 
-var acceleration = 200
-var friction = 200
+var acceleration = 250
+var friction = 300
 
 var max_speed setget set_max_speed
 var normal_speed = 75
@@ -57,7 +57,7 @@ func _ready():
 
 
 func _physics_process(delta: float):
-	if !dead:
+	if !dead and Global.game_started:
 		_input_vector(delta)
 		_move_player()
 		if weapon_equipped:
@@ -154,6 +154,9 @@ func pickup_item(item):
 	elif item.is_in_group("HealthPotion"):
 		items.health_potions += 1
 		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
+	elif item.is_in_group("HealthUpgrade"):
+		stats.max_health += item.increase_amount
+		get_tree().call_group("HUD", "setup_bars")
 
 
 func pickup_audio(stream):
@@ -220,7 +223,7 @@ func _on_Hurtbox_area_entered(area: Area2D):
 		stats.health -= area.damage
 		create_popup_damage(area.damage, Color.white, Vector2(0.4, 0.4))
 		hit_anim.play("player_hit")
-		hurtbox.start_invincibility(0.5)
+		hurtbox.start_invincibility(0.75)
 		hit = false
 	if area.is_in_group("BossProjectile") and !hit:
 		hit = true

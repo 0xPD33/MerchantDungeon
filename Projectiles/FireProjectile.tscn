@@ -18,7 +18,7 @@ radius = 7.8915
 [node name="FireProjectile" instance=ExtResource( 3 )]
 impact_effect = ExtResource( 4 )
 projectile_speed = 160.0
-knockback_amount = 80
+knockback_amount = 120
 
 [node name="CPUParticles2D" parent="." index="0"]
 visible = true

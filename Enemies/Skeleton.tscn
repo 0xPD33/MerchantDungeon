@@ -48,13 +48,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 8.15158
+radius = 7.84572
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 6.35039
+radius = 6.78003
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 70.0
+radius = 71.1807
 
 [node name="Skeleton" instance=ExtResource( 2 )]
 script = ExtResource( 5 )
@@ -84,13 +84,16 @@ anims/skeleton_hit = ExtResource( 4 )
 [node name="DeathAnimation" parent="." index="6"]
 anims/skeleton_death = ExtResource( 3 )
 
+[node name="IdleAudio" parent="." index="8"]
+volume_db = -6.0
+
 [node name="HitAudio" parent="." index="9"]
 stream = ExtResource( 6 )
-volume_db = -30.0
+volume_db = -6.0
 
 [node name="DeathAudio" parent="." index="10"]
 stream = ExtResource( 7 )
-volume_db = -30.0
+volume_db = -6.0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 visible = false
@@ -105,7 +108,7 @@ visible = false
 shape = SubResource( 7 )
 
 [node name="Stats" parent="." index="14"]
-damage = 3.0
+damage = 2.0
 knockback_multiplier = 0.7
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 

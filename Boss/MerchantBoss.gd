@@ -4,9 +4,9 @@ const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
 const HIT_EFFECT = preload("res://Effects/HitEffect.tscn")
 const UNARMING_PROJECTILE = preload("res://Boss/UnarmingProjectile.tscn")
 
-var acceleration = 125
+var acceleration = 150
 var max_speed = 50 setget set_max_speed
-var friction = 75
+var friction = 125
 
 enum {
 	STAGE0,
@@ -23,6 +23,7 @@ var fight_started = false
 var shooting_projectile = false
 
 var projectile_wait_time = 5.0
+var projectile_speed = 175
 
 var hit = false
 var dead = false
@@ -63,7 +64,7 @@ func _physics_process(delta: float):
 		
 		if player != null:
 			if shooting_projectile or changing_stage:
-				velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+				velocity = velocity.move_toward(Vector2.ZERO, (friction * 2) * delta)
 			else:
 				direction = (player.global_position - global_position).normalized()
 				velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
@@ -78,6 +79,14 @@ func start_fight():
 	change_stage()
 
 
+func end_fight():
+	dead = true
+	death_anim.play("boss_death")
+	yield(death_anim, "animation_finished")
+	queue_free()
+	get_tree().call_group("World", "launch_credits")
+
+
 func change_stage():
 	match state:
 		STAGE0:
@@ -90,16 +99,19 @@ func change_stage():
 			stage_anim.play("boss_stage2")
 			yield(stage_anim, "animation_finished")
 			projectile_shoot_timer.start(projectile_wait_time)
-			set_max_speed(60)
+			set_max_speed(70)
 			state = STAGE2
 			changing_stage = false
 		STAGE2:
 			get_tree().call_group("BossMobSpawn", "start_timer")
 			change_projectile_wait_time(3.0)
-			set_max_speed(75)
+			projectile_speed = 200
+			set_max_speed(80)
 			state = STAGE3
 		STAGE3:
+			stats.set_damage(2)
 			change_projectile_wait_time(1.5)
+			projectile_speed = 250
 			set_max_speed(90)
 
 
@@ -114,6 +126,7 @@ func shoot_unarming_projectile():
 	attack_anim.play("boss_magic_attack")
 	yield(attack_anim, "animation_finished")
 	var projectile_instance = UNARMING_PROJECTILE.instance()
+	projectile_instance.set_projectile_speed(projectile_speed)
 	get_tree().current_scene.get_node("YSort/Projectiles").add_child(projectile_instance)
 	projectile_instance.shoot(direction, projectile_shoot_pos.global_position)
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -144,6 +157,7 @@ func _on_Hurtbox_area_entered(area: Area2D):
 			hit = true
 			stats.health -= area.damage
 			hurtbox.start_invincibility(0.5)
+			hit_anim.play("boss_hit")
 			if area.is_in_group("Hitbox"):
 				create_hit_effect(global_position)
 			create_popup_damage(area.damage, Color.white, Vector2(0.5, 0.5))
@@ -154,15 +168,15 @@ func _on_Hurtbox_area_entered(area: Area2D):
 
 
 func _on_BossStats_no_health():
-	queue_free()
+	end_fight()
 
 
 func _on_BossStats_health_changed(value):
 	if value <= 80:
 		change_stage()
-	if value <= 50:
+	if value <= 55:
 		change_stage()
-	if value <= 20:
+	if value <= 30:
 		change_stage()
 
 

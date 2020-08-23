@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cobweb_destroy.wav-dd35b5a1fc92f88127558b1d5fb21fec.sample"
+
+[deps]
+
+source_file="res://SFX/PMSFX Sampler/cobweb_destroy.wav"
+dest_files=[ "res://.import/cobweb_destroy.wav-dd35b5a1fc92f88127558b1d5fb21fec.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

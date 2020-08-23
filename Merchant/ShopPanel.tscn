@@ -3,28 +3,28 @@
 [ext_resource path="res://UI/Font/manaspc.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Merchant/ShopPanel.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.498039, 0.498039, 0.498039, 0.196078 )
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0.27451 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 draw_center = false
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 5
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 6
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=7]
 size = 6
 font_data = ExtResource( 1 )
 
@@ -36,7 +36,7 @@ margin_right = 50.0
 margin_bottom = -3.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -61,10 +61,10 @@ __meta__ = {
 margin_right = 92.0
 margin_bottom = 51.0
 size_flags_vertical = 3
-custom_styles/selected_focus = SubResource( 8 )
-custom_styles/bg_focus = SubResource( 9 )
-custom_styles/bg = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/selected_focus = SubResource( 2 )
+custom_styles/bg_focus = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 auto_height = true
 
@@ -73,7 +73,7 @@ margin_top = 55.0
 margin_right = 92.0
 margin_bottom = 72.0
 size_flags_horizontal = 5
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "[Arrows] select, [E] buy, [Q] cancel"
 align = 1
 valign = 1
@@ -91,7 +91,7 @@ margin_left = -60.0
 margin_top = 43.0
 margin_right = 60.0
 margin_bottom = 93.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 7 )
 text = "Note: If you cannot select an item try using the other arrow key."
 align = 1
 valign = 1

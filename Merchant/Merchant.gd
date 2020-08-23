@@ -106,6 +106,10 @@ func show_shop():
 	shop_panel.open_shop()
 
 
+func close_shop():
+	shop_panel.close_shop()
+
+
 func _on_InteractRange_body_entered(body: Node):
 	if body.is_in_group("Player"):
 		can_interact = true
@@ -115,5 +119,6 @@ func _on_InteractRange_body_exited(body: Node):
 	if body.is_in_group("Player"):
 		dialogue_state = 0
 		dialogue_panel.hide()
+		close_shop()
 		can_interact = false
 

@@ -7,7 +7,7 @@
 bg_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 8
+size = 6
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=3]
@@ -62,12 +62,12 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
-text = "WASD to move
-Shift to sprint
+text = "WASD to move, Shift to sprint
 Left Mouse to attack
 E to interact
 T to drop your weapon
 H to use a Health Potion
+M to toggle sound
 L to restart the game
 Tab to show/hide this screen"
 align = 1

@@ -4,11 +4,10 @@
 [ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=2]
 
 [node name="IronSword" instance=ExtResource( 1 )]
-attack_duration = 0.3
+attack_duration = 0.25
 attack_damage = 3.0
-attack_range = 35
 attack_knockback = 110
-weapon_distance = 14
+weapon_distance = 13
 
 [node name="Body" parent="." index="1"]
 position = Vector2( 0, 0.688414 )

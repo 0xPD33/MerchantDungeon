@@ -83,13 +83,16 @@ func set_health_potions(amount):
 
 func update_healthbar():
 	if player != null:
-		healthbar.value = player.stats.health
-		health_label.text = str(player.stats.health)
+		if player.stats.health > 0:
+			healthbar.value = player.stats.health
+			health_label.text = str(player.stats.health)
+		else:
+			healthbar.value = 0
+			health_label.text = str(0)
 
 
 func update_staminabar():
 	if player != null:
 		staminabar.value = player.stats.stamina
-		if player.stats.stamina >= 0:
-			stamina_label.text = str(round(player.stats.stamina))
+		stamina_label.text = str(round(player.stats.stamina))
 
