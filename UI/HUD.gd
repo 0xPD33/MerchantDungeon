@@ -20,6 +20,8 @@ onready var help_panel = $HelpPanel
 
 onready var death_label = $DeathLabel
 
+onready var pause_menu = $PauseMenu
+
 
 func _ready():
 	get_player()
@@ -36,12 +38,14 @@ func _process(_delta: float):
 		update_staminabar()
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("show_help"):
 		if !help_panel.is_visible:
 			show_help()
 		else:
 			hide_help()
+	if Input.is_action_just_pressed("ui_cancel"):
+		pause_game()
 
 
 func get_player():
@@ -58,6 +62,10 @@ func hide_help():
 
 func show_death_label():
 	death_label.get_node("AnimationPlayer").play("death_label_anim")
+
+
+func pause_game():
+	pause_menu.open()
 
 
 func setup_bars():
@@ -93,6 +101,10 @@ func update_healthbar():
 
 func update_staminabar():
 	if player != null:
-		staminabar.value = player.stats.stamina
-		stamina_label.text = str(round(player.stats.stamina))
+		if player.stats.stamina > 0:
+			staminabar.value = player.stats.stamina
+			stamina_label.text = str(round(player.stats.stamina))
+		else:
+			staminabar.value = 0
+			stamina_label.text = str(0)
 

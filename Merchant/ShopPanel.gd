@@ -20,7 +20,7 @@ func _ready():
 	load_item_list()
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_down"):
 		select_next_item()
 	if Input.is_action_just_pressed("ui_up"):

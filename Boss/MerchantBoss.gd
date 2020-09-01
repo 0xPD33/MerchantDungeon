@@ -4,9 +4,9 @@ const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
 const HIT_EFFECT = preload("res://Effects/HitEffect.tscn")
 const UNARMING_PROJECTILE = preload("res://Boss/UnarmingProjectile.tscn")
 
-var acceleration = 150
+var acceleration = 175
 var max_speed = 50 setget set_max_speed
-var friction = 125
+var friction = 150
 
 enum {
 	STAGE0,
@@ -22,7 +22,7 @@ var changing_stage = false
 var fight_started = false
 var shooting_projectile = false
 
-var projectile_wait_time = 5.0
+var projectile_wait_time = 4.0
 var projectile_speed = 175
 
 var hit = false
@@ -104,13 +104,13 @@ func change_stage():
 			changing_stage = false
 		STAGE2:
 			get_tree().call_group("BossMobSpawn", "start_timer")
-			change_projectile_wait_time(3.0)
+			change_projectile_wait_time(2.0)
 			projectile_speed = 200
 			set_max_speed(80)
 			state = STAGE3
 		STAGE3:
 			stats.set_damage(2)
-			change_projectile_wait_time(1.5)
+			change_projectile_wait_time(1.0)
 			projectile_speed = 250
 			set_max_speed(90)
 
@@ -153,7 +153,7 @@ func create_hit_effect(pos):
 
 func _on_Hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("Hitbox") or area.is_in_group("Projectile"):
-		if !hit:
+		if !hit and !dead and !changing_stage:
 			hit = true
 			stats.health -= area.damage
 			hurtbox.start_invincibility(0.5)

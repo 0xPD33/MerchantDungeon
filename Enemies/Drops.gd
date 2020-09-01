@@ -1,11 +1,11 @@
 extends "res://Items/ItemSpawner.gd"
 
+export var drop_chance = 50
+
 var gold = preload("res://Items/Gold.tscn")
 var heart = preload("res://Items/Heart.tscn")
 
 var possible_drops = [gold]
-
-var drop_chance = 50
 
 
 func allow_heart_drop():

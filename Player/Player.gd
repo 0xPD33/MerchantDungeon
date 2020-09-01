@@ -6,13 +6,12 @@ var acceleration = 250
 var friction = 300
 
 var max_speed setget set_max_speed
-var normal_speed = 75
-var sprint_speed = 125
+var normal_speed = 75 setget set_normal_speed
+var sprint_speed = 125 setget set_sprint_speed
 
 var velocity = Vector2.ZERO
 var input_vector
 
-var slowed = false
 var moving = false
 
 var can_sprint = true
@@ -46,6 +45,14 @@ onready var items = $Items
 
 func set_max_speed(value):
 	max_speed = value
+
+
+func set_normal_speed(value):
+	normal_speed = value
+
+
+func set_sprint_speed(value):
+	sprint_speed = value
 
 
 func _ready():

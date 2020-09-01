@@ -34,7 +34,7 @@ func _ready():
 	raycast.position.x = weapon_body.position.x
 
 
-func _process(delta):
+func _process(_delta):
 	attack_direction = (get_global_mouse_position() - $Body.global_position).normalized()
 	hitbox.knockback_vector = attack_direction
 	handle_collisions()
@@ -56,10 +56,16 @@ func attack():
 		attack_tween.interpolate_property(weapon_body, "position:x", attack_range, origin_pos.x, attack_duration, Tween.TRANS_SINE, Tween.EASE_IN_OUT, attack_duration)
 		attack_tween.interpolate_callback(self, attack_cooldown, "_attack_complete")
 		attack_tween.start()
-		swing_audio.play()
+		play_swing_audio()
 		hitbox.monitorable = true
 	else:
 		return
+
+
+func play_swing_audio():
+	randomize()
+	swing_audio.pitch_scale = rand_range(0.5, 1.5)
+	swing_audio.play()
 
 
 func _attack_complete():

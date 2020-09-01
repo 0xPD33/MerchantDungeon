@@ -18,8 +18,6 @@ func _ready():
 func _input(event):
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("mute_sound"):
-		AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
 
 
 func show_help():

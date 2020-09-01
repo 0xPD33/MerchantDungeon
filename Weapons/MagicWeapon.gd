@@ -30,7 +30,7 @@ func _ready():
 	raycast.position.x = weapon_body.position.x
 
 
-func _process(delta):
+func _process(_delta):
 	attack_direction = (get_global_mouse_position() - $Body.global_position).normalized()
 	handle_collisions()
 	check_player_stamina()

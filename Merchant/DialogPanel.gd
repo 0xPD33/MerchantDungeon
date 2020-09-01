@@ -11,7 +11,7 @@ func _ready():
 	set_process_input(false)
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		set_process_input(false)
 		merchant.talk("A")

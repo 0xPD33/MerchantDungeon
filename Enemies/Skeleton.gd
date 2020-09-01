@@ -15,7 +15,7 @@ func _physics_process(delta: float):
 
 func _on_Hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("Hitbox") or area.is_in_group("Projectile"):
-		if !hit:
+		if !hit and !dead:
 			hit = true
 			stats.health -= area.damage
 			hurtbox.start_invincibility(0.5)
@@ -27,7 +27,6 @@ func _on_Hurtbox_area_entered(area: Area2D):
 			if area.is_in_group("Projectile"):
 				area.impact(global_position)
 				area.queue_free()
-			hit = false
 
 
 func _on_Stats_no_health():

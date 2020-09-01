@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=1]
 [ext_resource path="res://World/Objects/Cobwebs.gd" type="Script" id=2]
 [ext_resource path="res://SFX/PMSFX Sampler/cobweb_destroy.wav" type="AudioStream" id=3]
+[ext_resource path="res://Enemies/Drops.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.09843
@@ -83,6 +84,10 @@ pitch_scale = 1.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/disappear = SubResource( 3 )
+
+[node name="Drops" type="Node" parent="."]
+script = ExtResource( 4 )
+drop_chance = 25
 [connection signal="body_entered" from="SlowArea" to="." method="_on_SlowArea_body_entered"]
 [connection signal="body_exited" from="SlowArea" to="." method="_on_SlowArea_body_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

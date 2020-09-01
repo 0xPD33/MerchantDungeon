@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Font/manaspc.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Weapons/WeaponDrops/DropPanel.gd" type="Script" id=2]
@@ -10,7 +10,11 @@ draw_center = false
 size = 8
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
+size = 6
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 6
 font_data = ExtResource( 1 )
 
@@ -32,9 +36,8 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 3.0
-margin_top = 3.0
 margin_right = 71.0
-margin_bottom = 33.0
+margin_bottom = 41.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,10 +52,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="WeaponDescription" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_top = 12.0
 margin_right = 68.0
-margin_bottom = 30.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 5 )
+text = "It's a stick."
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 68.0
+margin_bottom = 41.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 margin_right = 68.0
@@ -64,7 +78,7 @@ __meta__ = {
 [node name="DamageLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 7.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Dmg: 1 (+)"
 valign = 1
 
@@ -72,7 +86,7 @@ valign = 1
 margin_top = 11.0
 margin_right = 68.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Press [E] to take"
 valign = 1
 __meta__ = {

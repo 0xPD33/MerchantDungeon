@@ -77,15 +77,15 @@ wait_time = 3.0
 
 [node name="IdleAudio" parent="." index="9"]
 stream = ExtResource( 7 )
-volume_db = -6.0
+volume_db = -9.0
 
 [node name="HitAudio" parent="." index="10"]
 stream = ExtResource( 8 )
-volume_db = -6.0
+volume_db = -9.0
 
 [node name="DeathAudio" parent="." index="11"]
 stream = ExtResource( 9 )
-volume_db = -6.0
+volume_db = -9.0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 visible = false
@@ -101,8 +101,7 @@ shape = SubResource( 6 )
 
 [node name="Stats" parent="." index="15"]
 max_health = 8
-damage = 1.0
-knockback_multiplier = 0.8
+knockback_multiplier = 1.1
 [connection signal="timeout" from="MoveSpeedTimer" to="." method="_on_MoveSpeedTimer_timeout"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 

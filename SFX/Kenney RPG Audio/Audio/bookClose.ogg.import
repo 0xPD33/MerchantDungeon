@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bookClose.ogg-6c51fbe49f2666a86c5f77f1929f2e36.oggstr"
+
+[deps]
+
+source_file="res://SFX/Kenney RPG Audio/Audio/bookClose.ogg"
+dest_files=[ "res://.import/bookClose.ogg-6c51fbe49f2666a86c5f77f1929f2e36.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

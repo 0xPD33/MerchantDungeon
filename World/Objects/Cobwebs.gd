@@ -5,6 +5,8 @@ var is_inside = false
 
 var move_speed_multiplier = 0.5
 
+onready var drops = $Drops
+
 
 func _process(delta):
 	if entity_inside != null:
@@ -37,6 +39,7 @@ func _on_Hurtbox_area_entered(area: Area2D):
 		$SlowArea.call_deferred("set_monitorable", false)
 		$AnimationPlayer.play("disappear")
 		yield($AnimationPlayer, "animation_finished")
+		drops.drop_item()
 		queue_free()
 
 

@@ -40,5 +40,9 @@ autoplay = "drop_move"
 anims/drop_move = SubResource( 1 )
 
 [node name="DropPanel" parent="." instance=ExtResource( 2 )]
+margin_left = 12.0
+margin_top = -20.0
+margin_right = 87.0
+margin_bottom = 5.0
 [connection signal="body_entered" from="PickupRadius" to="." method="_on_PickupRadius_body_entered"]
 [connection signal="body_exited" from="PickupRadius" to="." method="_on_PickupRadius_body_exited"]

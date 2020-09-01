@@ -73,16 +73,16 @@ anims/spider_death = ExtResource( 6 )
 
 [node name="IdleAudio" parent="." index="8"]
 stream = ExtResource( 9 )
-volume_db = -6.0
+volume_db = -9.0
 
 [node name="HitAudio" parent="." index="9"]
 stream = ExtResource( 8 )
-volume_db = -6.0
+volume_db = -9.0
 pitch_scale = 1.2
 
 [node name="DeathAudio" parent="." index="10"]
 stream = ExtResource( 7 )
-volume_db = -6.0
+volume_db = -9.0
 pitch_scale = 0.9
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
