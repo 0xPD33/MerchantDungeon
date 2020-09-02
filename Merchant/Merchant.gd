@@ -39,7 +39,7 @@ func talk(answer = ""):
 				match answer:
 					"A":
 						dialogue_state = 2
-						dialogue_panel.dialogue = "Well you are not the first to stumble into this place."
+						dialogue_panel.dialogue = "You are not the first to stumble into this place."
 						dialogue_panel.answers = "[E] - What is this place?"
 						show_dialogue()
 			2:
@@ -63,40 +63,7 @@ func talk(answer = ""):
 						introduced = true
 						dialogue_state = 0
 						dialogue_panel.hide()
-	if introduced:
-		match dialogue_state:
-			0:
-				dialogue_state = 1
-				dialogue_panel.dialogue = "Hey! Welcome to my shop!"
-				dialogue_panel.answers = "[E] - continue\n[Q] - cancel"
-				show_dialogue()
-			1:
-				match answer:
-					"A":
-						dialogue_state = 2
-						dialogue_panel.dialogue = "Would you like anything?"
-						dialogue_panel.answers = "[E] - yes\n[Q] - no"
-						show_dialogue()
-					"B":
-						dialogue_state = 3
-						dialogue_panel.dialogue = "Okay then. Have a good one!"
-						dialogue_panel.answers = "[E] - Thank you"
-						show_dialogue()
-			2:
-				match answer:
-					"A":
-						dialogue_state = 4
-						dialogue_panel.hide()
-					"B":
-						dialogue_state = 3
-						dialogue_panel.dialogue = "Okay then. Have a good one!"
-						dialogue_panel.answers = "[E] - Thank you"
-						show_dialogue()
-			3:
-				match answer:
-					"A":
-						dialogue_state = 0
-						dialogue_panel.hide()
+						spawn_shop_items()
 
 
 func spawn_shop_items():

@@ -492,18 +492,18 @@ position = Vector2( -80, 768 )
 [node name="Items" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -304, 112 )
+position = Vector2( -80, 824 )
 
 [node name="MerchantRoom" type="Node2D" parent="YSort"]
 
 [node name="Merchant" parent="YSort/MerchantRoom" instance=ExtResource( 11 )]
-position = Vector2( -80, 600 )
+position = Vector2( -80, 632 )
 
 [node name="ShopItemSpawn" parent="YSort/MerchantRoom" instance=ExtResource( 24 )]
 position = Vector2( -128, 624 )
 
 [node name="ShopItemSpawn2" parent="YSort/MerchantRoom" instance=ExtResource( 24 )]
-position = Vector2( -80, 632 )
+position = Vector2( -80, 608 )
 
 [node name="ShopItemSpawn3" parent="YSort/MerchantRoom" instance=ExtResource( 24 )]
 position = Vector2( -32, 624 )

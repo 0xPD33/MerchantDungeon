@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
+[ext_resource path="res://Merchant/ShopItems/ShopItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/HealthUpgrade.tscn" type="PackedScene" id=3]
+
+[node name="HealthUpgradeShopItem" instance=ExtResource( 2 )]
+linked_item = ExtResource( 3 )
+item_name = "Health Upgrade"
+item_cost = 20
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 715, 172, 14, 12 )

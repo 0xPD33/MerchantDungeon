@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Tilesheets/images/colored_transparent_packed_492.png" type="Texture" id=1]
+[ext_resource path="res://Tilesheets/images/monochrome_transparent_packed_492.png" type="Texture" id=1]
 [ext_resource path="res://World/Objects/Door.gd" type="Script" id=2]
 [ext_resource path="res://SFX/Kenney RPG Audio/Audio/doorOpen_1.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Tilesheets/images/colored_transparent_packed_490.png" type="Texture" id=4]
 [ext_resource path="res://SFX/Kenney RPG Audio/Audio/doorClose_4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Tilesheets/images/monochrome_transparent_packed_490.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2, 5.6 )
@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 1 ), ExtResource( 4 ) ]
+"values": [ ExtResource( 1 ), ExtResource( 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite2:texture")
@@ -41,7 +41,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 1 ), ExtResource( 4 ) ]
+"values": [ ExtResource( 1 ), ExtResource( 6 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("DoorSound:stream")
@@ -77,9 +77,9 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1.23114, 4.28709 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ), ExtResource( 1 ) ]
+"values": [ ExtResource( 6 ), ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite2:texture")
@@ -89,9 +89,9 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 2.21914 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ), ExtResource( 1 ) ]
+"values": [ ExtResource( 6 ), ExtResource( 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("DoorSound:stream")
@@ -127,12 +127,12 @@ script = ExtResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]
 position = Vector2( -7, -7 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 154, 171, 14, 14 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( -6, -7 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 offset = Vector2( 13, 0 )
 flip_h = true
 region_rect = Rect2( 154, 171, 14, 14 )
