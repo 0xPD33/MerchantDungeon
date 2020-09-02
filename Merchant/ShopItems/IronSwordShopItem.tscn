@@ -11,7 +11,6 @@ item_cost = 18
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.490196, 0.490196, 0.490196, 1 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 596, 120, 14, 14.1417 )

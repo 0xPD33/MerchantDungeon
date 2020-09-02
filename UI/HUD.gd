@@ -16,10 +16,9 @@ onready var gold_label = $GoldContainer/GoldLabel
 
 onready var potion_count = $HealthPotionContainer/PotionCount
 
-onready var help_panel = $HelpPanel
-
 onready var death_label = $DeathLabel
 
+onready var help_panel = $HelpPanel
 onready var pause_menu = $PauseMenu
 
 
@@ -39,13 +38,13 @@ func _process(_delta: float):
 
 
 func _input(_event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		pause_game()
 	if Input.is_action_just_pressed("show_help"):
 		if !help_panel.is_visible:
 			show_help()
 		else:
 			hide_help()
-	if Input.is_action_just_pressed("ui_cancel"):
-		pause_game()
 
 
 func get_player():

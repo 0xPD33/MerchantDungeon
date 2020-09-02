@@ -9,8 +9,6 @@ var introduced = false
 
 onready var evil_anim = $EvilAnimation
 onready var dialogue_panel = $DialoguePanel
-onready var shop_panel = $ShopPanel
-onready var item_spawner = $ItemSpawner
 
 
 func _ready():
@@ -89,7 +87,6 @@ func talk(answer = ""):
 					"A":
 						dialogue_state = 4
 						dialogue_panel.hide()
-						show_shop()
 					"B":
 						dialogue_state = 3
 						dialogue_panel.dialogue = "Okay then. Have a good one!"
@@ -102,12 +99,8 @@ func talk(answer = ""):
 						dialogue_panel.hide()
 
 
-func show_shop():
-	shop_panel.open_shop()
-
-
-func close_shop():
-	shop_panel.close_shop()
+func spawn_shop_items():
+	get_tree().call_group("ShopItemSpawn", "spawn_shop_item")
 
 
 func _on_InteractRange_body_entered(body: Node):
@@ -119,6 +112,5 @@ func _on_InteractRange_body_exited(body: Node):
 	if body.is_in_group("Player"):
 		dialogue_state = 0
 		dialogue_panel.hide()
-		close_shop()
 		can_interact = false
 

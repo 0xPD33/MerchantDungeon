@@ -1,6 +1,6 @@
 extends Node2D
 
-var help_delay : float = 2.0
+var tutorial_delay : float = 1.0
 
 onready var intro_sequence = $IntroSequencePlayer
 
@@ -21,11 +21,10 @@ func _input(event):
 
 
 func show_help():
-	yield(get_tree().create_timer(help_delay), "timeout")
+	yield(get_tree().create_timer(tutorial_delay), "timeout")
 	get_tree().call_group("HUD", "show_help")
 
 
 func launch_credits():
 	get_tree().change_scene("res://UI/Credits.tscn")
-
 

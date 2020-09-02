@@ -99,7 +99,7 @@ func _input(_event):
 
 
 func _move_player():
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 	
 	if Input.is_action_pressed("sprint") and can_sprint:
 		sprint_particles_enabled(true)

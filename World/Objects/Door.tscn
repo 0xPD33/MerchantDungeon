@@ -1,23 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Tilesheets/images/colored_transparent_packed_492.png" type="Texture" id=1]
 [ext_resource path="res://World/Objects/Door.gd" type="Script" id=2]
+[ext_resource path="res://SFX/Kenney RPG Audio/Audio/doorOpen_1.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Tilesheets/images/colored_transparent_packed_490.png" type="Texture" id=4]
+[ext_resource path="res://SFX/Kenney RPG Audio/Audio/doorClose_4.ogg" type="AudioStream" id=5]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2, 5.6 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.4, 27.4 )
+extents = Vector2( 14.0572, 18.6 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=3]
 closed = false
 cull_mode = 1
 polygon = PoolVector2Array( -14, 0, -14, -13, -13, -13, -13, -14, 13, -14, 13, -13, 14, -13, 14, 0, -11, 0 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "close_anim"
-length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite1:texture")
 tracks/0/interp = 1
@@ -25,7 +26,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 1 ), ExtResource( 4 ) ]
@@ -37,15 +38,37 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 1 ), ExtResource( 4 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorSound:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1.93187 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
-[sub_resource type="Animation" id=3]
-resource_name = "open_anim"
-length = 0.4
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite1:texture")
 tracks/0/interp = 1
@@ -53,7 +76,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1.23114, 4.28709 ),
 "update": 1,
 "values": [ ExtResource( 4 ), ExtResource( 1 ) ]
@@ -65,28 +88,50 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 2.21914 ),
 "update": 1,
 "values": [ ExtResource( 4 ), ExtResource( 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DoorSound:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DoorSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [node name="Door" type="StaticBody2D" groups=[
 "Door",
 ]]
 scale = Vector2( 1.25, 1.25 )
-collision_mask = 4
+collision_mask = 20
 script = ExtResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]
 position = Vector2( -7, -7 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 region_rect = Rect2( 154, 171, 14, 14 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( -6, -7 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 offset = Vector2( 13, 0 )
 flip_h = true
@@ -95,29 +140,29 @@ region_rect = Rect2( 154, 171, 14, 14 )
 [node name="DoorCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, -5.6 )
-scale = Vector2( 1, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-scale = Vector2( 1, 1 )
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-visible = false
 position = Vector2( 0, -7 )
 shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-occluder = SubResource( 4 )
+occluder = SubResource( 3 )
 
 [node name="DoorSound" type="AudioStreamPlayer2D" parent="."]
-scale = Vector2( 1, 1 )
+stream = ExtResource( 3 )
+volume_db = -7.5
+pitch_scale = 0.6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/close_anim = SubResource( 5 )
-anims/open_anim = SubResource( 3 )
+playback_speed = 1.5
+anims/close_anim = SubResource( 4 )
+anims/open_anim = SubResource( 5 )
 
 [node name="CloseTimer" type="Timer" parent="."]
 process_mode = 0

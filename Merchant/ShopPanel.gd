@@ -58,7 +58,7 @@ func select_previous_item():
 
 func open_shop():
 	show()
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	set_process_input(true)
 	item_list.grab_focus()
 	if !item_list.is_anything_selected():
