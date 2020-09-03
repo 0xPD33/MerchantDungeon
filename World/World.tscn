@@ -484,7 +484,7 @@ position = Vector2( -200, 1104 )
 [node name="Bones3" parent="YSort/Objects/Bones" instance=ExtResource( 9 )]
 position = Vector2( 432, 912 )
 
-[node name="Doors" type="Node2D" parent="YSort/Objects"]
+[node name="Doors" type="YSort" parent="YSort/Objects"]
 
 [node name="Door" parent="YSort/Objects/Doors" instance=ExtResource( 23 )]
 position = Vector2( -80, 768 )

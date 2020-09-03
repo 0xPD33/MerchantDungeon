@@ -17,6 +17,7 @@ onready var item_name_label = $Panel/VBoxContainer/ItemNameLabel
 onready var gold_label = $Panel/VBoxContainer/HBoxContainer/GoldLabel
 
 onready var item_spawner = $ItemSpawner
+onready var anim_player = $AnimationPlayer
 
 
 func _ready():
@@ -43,6 +44,7 @@ func setup():
 	player_gold = player.items.gold
 	item_name_label.text = item_name
 	gold_label.text = str(item_cost)
+	anim_player.play("animate_shop_item")
 
 
 func _on_shop_item_taken():

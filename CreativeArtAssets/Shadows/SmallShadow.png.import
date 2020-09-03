@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light_big.png-9062fb1aa26c4f04ffabf6b79ae929ce.stex"
+path="res://.import/SmallShadow.png-090b6a310143d80f8cd0e50e82350105.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lightmaps/light_big.png"
-dest_files=[ "res://.import/light_big.png-9062fb1aa26c4f04ffabf6b79ae929ce.stex" ]
+source_file="res://CreativeArtAssets/Shadows/SmallShadow.png"
+dest_files=[ "res://.import/SmallShadow.png-090b6a310143d80f8cd0e50e82350105.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -164,6 +164,10 @@ func pickup_item(item):
 	elif item.is_in_group("HealthUpgrade"):
 		stats.max_health += item.increase_amount
 		get_tree().call_group("HUD", "setup_bars")
+	elif item.is_in_group("SpeedUpgrade"):
+		normal_speed += item.increase_amount
+		sprint_speed += item.increase_amount
+		set_max_speed(normal_speed)
 
 
 func pickup_audio(stream):

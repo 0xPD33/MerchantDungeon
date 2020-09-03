@@ -3,8 +3,9 @@
 [ext_resource path="res://Items/Heart.gd" type="Script" id=1]
 [ext_resource path="res://Items/Item.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tilesheets/images/colored_transparent_packed_520.png" type="Texture" id=3]
-[ext_resource path="res://Lightmaps/light_big.png" type="Texture" id=4]
+[ext_resource path="res://CreativeArtAssets/Lightmaps/light_big.png" type="Texture" id=4]
 [ext_resource path="res://Animations/heart_idle.tres" type="Animation" id=5]
+
 
 [sub_resource type="CircleShape2D" id=1]
 

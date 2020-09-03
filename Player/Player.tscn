@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/Items.gd" type="Script" id=3]
 [ext_resource path="res://Player/PlayerStats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Boxes/Hurtbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Lightmaps/light_big.png" type="Texture" id=6]
+[ext_resource path="res://CreativeArtAssets/Lightmaps/light_big.png" type="Texture" id=6]
 [ext_resource path="res://SFX/RPG Sound Pack/inventory/bottle.wav" type="AudioStream" id=7]
 [ext_resource path="res://SFX/Kenney RPG Audio/Audio/footstep00.ogg" type="AudioStream" id=8]
 
