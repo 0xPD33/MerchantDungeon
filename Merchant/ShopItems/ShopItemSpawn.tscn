@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Merchant/ShopItems/ShopItemSpawn.gd" type="Script" id=1]
 [ext_resource path="res://Merchant/ShopItems/IronDaggerShopItem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Merchant/ShopItems/IronSwordShopItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Merchant/ShopItems/HealthPotionShopItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Items/ItemSpawner.gd" type="Script" id=5]
+[ext_resource path="res://Merchant/ShopItems/ShopItemSpawner.gd" type="Script" id=5]
 [ext_resource path="res://Tilesheets/monochrome_transparent_packed.png" type="Texture" id=6]
 [ext_resource path="res://Merchant/ShopItems/HealthUpgradeShopItem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CreativeArtAssets/Lightmaps/light_big.png" type="Texture" id=8]
 [ext_resource path="res://Merchant/ShopItems/SpeedUpgradeShopItem.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Merchant/ShopItems/AoSUpgradeShopItem.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -112,7 +113,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_gizmo_extents_": 7.0
 }
-possible_shop_items = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 7 ) ]
+possible_shop_items = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ) ]
 
 [node name="ItemSpawner" type="Node" parent="."]
 script = ExtResource( 5 )

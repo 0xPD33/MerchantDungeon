@@ -4,6 +4,9 @@ var player = null
 
 var can_interact = false
 
+var items_spawned = false
+var times_spawned_items = 0
+
 var dialogue_state = 0
 var introduced = false
 
@@ -17,7 +20,7 @@ func _ready():
 
 
 func _input(_event):
-	if Input.is_action_just_pressed("interact") and can_interact:
+	if Input.is_action_just_pressed("interact") and can_interact and !items_spawned:
 		talk()
 
 
@@ -33,7 +36,7 @@ func talk(answer = ""):
 			0:
 				dialogue_state = 1
 				dialogue_panel.dialogue = "Wait, where did you come from?"
-				dialogue_panel.answers = "[E] - I don't know"
+				dialogue_panel.answers = "[E] - I don't know."
 				show_dialogue()
 			1:
 				match answer:
@@ -46,7 +49,7 @@ func talk(answer = ""):
 				match answer:
 					"A":
 						dialogue_state = 3
-						dialogue_panel.dialogue = "I can't explain that yet"
+						dialogue_panel.dialogue = "I can't explain that yet."
 						dialogue_panel.answers = "[E] - Who are you?"
 						show_dialogue()
 			3:
@@ -60,14 +63,54 @@ func talk(answer = ""):
 			4:
 				match answer:
 					"A":
+						spawn_shop_items()
+						dialogue_state = 0
+						dialogue_panel.hide()
 						introduced = true
+	else:
+		match dialogue_state:
+			0:
+				dialogue_state = 1
+				dialogue_panel.dialogue = "Back to get more?"
+				dialogue_panel.answers = "[E] - Yes, please.\n[Q] - No."
+				show_dialogue()
+			1:
+				match answer:
+					"A":
+						dialogue_state = 2
+						dialogue_panel.dialogue = "Well.. I've raised the prices a bit."
+						dialogue_panel.answers = "[E] - Alright.\n[Q] - Oh, goodbye then."
+						show_dialogue()
+					"B":
+						dialogue_state = 0
+						dialogue_panel.hide()
+			2:
+				match answer:
+					"A":
 						dialogue_state = 0
 						dialogue_panel.hide()
 						spawn_shop_items()
+					"B":
+						dialogue_state = 0
+						dialogue_panel.hide()
 
 
 func spawn_shop_items():
-	get_tree().call_group("ShopItemSpawn", "spawn_shop_item")
+	match times_spawned_items:
+		0:
+			get_tree().call_group("ShopItemSpawn", "spawn_shop_item", 1.0)
+		1:
+			get_tree().call_group("ShopItemSpawn", "spawn_shop_item", 1.5)
+		2:
+			get_tree().call_group("ShopItemSpawn", "spawn_shop_item", 2.0)
+	
+	items_spawned = true
+	times_spawned_items += 1
+
+
+
+func _on_shop_item_taken():
+	items_spawned = false
 
 
 func _on_InteractRange_body_entered(body: Node):

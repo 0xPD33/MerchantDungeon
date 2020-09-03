@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Merchant/ShopItems/ShopItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/AreaOfSightUpgrade.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tilesheets/monochrome_transparent.png" type="Texture" id=3]
+
+[node name="AoSUpgradeShopItem" instance=ExtResource( 1 )]
+linked_item = ExtResource( 2 )
+item_name = "Area of Sight ++"
+item_cost = 22
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.988235, 0.878431, 0.737255, 1 )
+material = null
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 241, 307, 10, 14 )
+
+[node name="CollisionShape2D" parent="PickupRadius" index="0"]
+visible = false

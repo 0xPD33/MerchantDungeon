@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Merchant/ShopItems/ShopItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CreativeArtAssets/speed_upgrade_icon.png" type="Texture" id=2]
+[ext_resource path="res://Items/SpeedUpgrade.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "animate_shop_item"
@@ -21,8 +22,9 @@ tracks/0/keys = {
 }
 
 [node name="SpeedUpgradeShopItem" instance=ExtResource( 1 )]
-item_name = "Speed Upgrade"
-item_cost = 13
+linked_item = ExtResource( 3 )
+item_name = "Move Speed ++"
+item_cost = 18
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.878431, 0.843137, 0.458824, 1 )

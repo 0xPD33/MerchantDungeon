@@ -1,5 +1,7 @@
 extends Node
 
+var area_of_sight = 0.25 setget set_area_of_sight
+
 var max_health = 6 setget set_max_health
 var max_stamina = 12 setget set_max_stamina
 
@@ -8,6 +10,11 @@ onready var stamina = max_stamina setget set_stamina
 
 signal no_health
 signal no_stamina
+
+
+func set_area_of_sight(value):
+	area_of_sight = value
+	get_parent().player_light.texture_scale = value
 
 
 func set_max_health(value):

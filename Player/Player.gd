@@ -36,7 +36,7 @@ onready var hit_anim = $HitAnimation
 onready var death_anim = $DeathAnimation
 
 onready var sprint_particles = $SprintParticles
-
+onready var player_light = $Light2D
 onready var hurtbox = $Hurtbox
 
 onready var stats = $Stats
@@ -58,6 +58,7 @@ func set_sprint_speed(value):
 func _ready():
 	stats.connect("no_health", self, "_on_no_health")
 	stats.connect("no_stamina", self, "_on_no_stamina")
+	player_light.texture_scale = stats.area_of_sight
 	set_max_speed(normal_speed)
 	add_to_group("Player")
 	equip_fists()
@@ -168,6 +169,8 @@ func pickup_item(item):
 		normal_speed += item.increase_amount
 		sprint_speed += item.increase_amount
 		set_max_speed(normal_speed)
+	elif item.is_in_group("AreaOfSightUpgrade"):
+		stats.set_area_of_sight(stats.area_of_sight + item.increase_amount)
 
 
 func pickup_audio(stream):

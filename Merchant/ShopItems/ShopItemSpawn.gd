@@ -13,7 +13,7 @@ func _ready():
 	circle_sprite.hide()
 
 
-func spawn_shop_item():
+func spawn_shop_item(price_multiplier):
 	if !has_appeared:
 		randomize()
 		circle_sprite.show()
@@ -21,7 +21,7 @@ func spawn_shop_item():
 		yield(anim_player, "animation_finished")
 		anim_player.play("flash")
 		var shop_item = possible_shop_items[randi() % possible_shop_items.size()]
-		item_spawner.spawn_item(shop_item, global_position)
+		item_spawner.spawn_shop_item(shop_item, global_position, price_multiplier)
 		has_appeared = true
 
 

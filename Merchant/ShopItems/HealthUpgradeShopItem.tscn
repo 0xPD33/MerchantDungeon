@@ -6,8 +6,8 @@
 
 [node name="HealthUpgradeShopItem" instance=ExtResource( 2 )]
 linked_item = ExtResource( 3 )
-item_name = "Health Upgrade"
-item_cost = 20
+item_name = "Max Health ++"
+item_cost = 25
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
