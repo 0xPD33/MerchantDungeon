@@ -6,7 +6,6 @@
 [ext_resource path="res://Items/ItemSpawner.gd" type="Script" id=5]
 [ext_resource path="res://SFX/merchant_evil_form.wav" type="AudioStream" id=6]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "merchant_show_evil"
 step = 0.05

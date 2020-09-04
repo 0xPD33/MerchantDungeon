@@ -184,6 +184,10 @@ tile_data = PoolIntArray( -786498, 0, 0, -786497, 0, 0, -786496, 0, 0, -786495, 
 position = Vector2( -16, 48 )
 unique_drop = ExtResource( 7 )
 
+[node name="Barrel3" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
+position = Vector2( -664, 417.9 )
+unique_drop = ExtResource( 17 )
+
 [node name="Barrel21" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
 position = Vector2( -304, 48 )
 
@@ -547,7 +551,7 @@ is_locked = true
 [node name="Items" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -304, 96 )
+position = Vector2( -696, 416 )
 
 [node name="MerchantRoom" type="Node2D" parent="YSort"]
 

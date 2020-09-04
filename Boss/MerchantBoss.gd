@@ -23,7 +23,7 @@ var fight_started = false
 var shooting_projectile = false
 
 var projectile_wait_time = 4.0
-var projectile_speed = 175
+var projectile_speed = 225
 
 var hit = false
 var dead = false
@@ -90,8 +90,10 @@ func end_fight():
 func change_stage():
 	match state:
 		STAGE0:
+			changing_stage = true
 			stage_anim.play("boss_stage1")
 			yield(stage_anim, "animation_finished")
+			changing_stage = false
 			fight_started = true
 			state = STAGE1
 		STAGE1:
@@ -104,15 +106,15 @@ func change_stage():
 			changing_stage = false
 		STAGE2:
 			get_tree().call_group("BossMobSpawn", "start_timer")
-			change_projectile_wait_time(2.0)
-			projectile_speed = 200
-			set_max_speed(80)
+			change_projectile_wait_time(3.0)
+			projectile_speed = 250
+			set_max_speed(85)
 			state = STAGE3
 		STAGE3:
 			stats.set_damage(2)
-			change_projectile_wait_time(1.0)
-			projectile_speed = 250
-			set_max_speed(90)
+			change_projectile_wait_time(1.5)
+			projectile_speed = 275
+			set_max_speed(100)
 
 
 func change_projectile_wait_time(value : float):
@@ -129,7 +131,7 @@ func shoot_unarming_projectile():
 	projectile_instance.set_projectile_speed(projectile_speed)
 	get_tree().current_scene.get_node("YSort/Projectiles").add_child(projectile_instance)
 	projectile_instance.shoot(direction, projectile_shoot_pos.global_position)
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	shooting_projectile = false
 
 
@@ -181,5 +183,9 @@ func _on_BossStats_health_changed(value):
 
 
 func _on_ProjectileShootTimer_timeout():
-	shoot_unarming_projectile()
+	if player != null:
+		if player.weapon_equipped and !player.weapon.is_in_group("Fists"):
+			shoot_unarming_projectile()
+	else:
+		pass
 

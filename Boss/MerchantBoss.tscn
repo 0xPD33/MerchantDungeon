@@ -181,6 +181,7 @@ anims/boss_stage1 = ExtResource( 7 )
 anims/boss_stage2 = ExtResource( 11 )
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="."]
+playback_speed = 1.5
 anims/boss_magic_attack = ExtResource( 10 )
 
 [node name="MoveAnimation" type="AnimationPlayer" parent="."]

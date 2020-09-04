@@ -182,7 +182,7 @@ func pickup_audio(stream):
 
 
 func use_health_potion():
-	if items.health_potions > 0:
+	if items.health_potions > 0 and stats.health < stats.max_health:
 		heal_player()
 		play_potion_sound()
 		items.health_potions -= 1
