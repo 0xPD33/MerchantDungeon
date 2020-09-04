@@ -1,6 +1,6 @@
 extends Panel
 
-var merchant
+var npc
 
 var dialogue setget set_dialogue
 var answers setget set_answers
@@ -14,10 +14,10 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		set_process_input(false)
-		merchant.talk("A")
+		npc.talk("A")
 	elif Input.is_action_just_pressed("interact_secondary"):
 		set_process_input(false)
-		merchant.talk("B")
+		npc.talk("B")
 
 
 func set_dialogue(value):

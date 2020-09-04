@@ -11,10 +11,12 @@ onready var health_label = $BarContainer/Healthbar/TextureProgress/Label
 onready var staminabar = $BarContainer/Staminabar/TextureProgress
 onready var stamina_label = $BarContainer/Staminabar/TextureProgress/Label
 
-onready var gold_texture = $GoldContainer/GoldTexture
-onready var gold_label = $GoldContainer/GoldLabel
+onready var gold_texture = $VBoxContainer/GoldContainer/GoldTexture
+onready var gold_label = $VBoxContainer/GoldContainer/GoldLabel
 
-onready var potion_count = $HealthPotionContainer/PotionCount
+onready var key_count = $VBoxContainer/KeyContainer/KeyCount
+
+onready var potion_count = $VBoxContainer/HealthPotionContainer/PotionCount
 
 onready var death_label = $DeathLabel
 
@@ -29,12 +31,6 @@ func _ready():
 	set_health_potions(0)
 	add_to_group("HUD")
 	setup_done = true
-
-
-func _process(_delta: float):
-	if setup_done:
-		update_healthbar()
-		update_staminabar()
 
 
 func _input(_event):
@@ -83,26 +79,31 @@ func change_gold_texture(new_texture):
 	gold_texture.texture = new_texture
 
 
+func set_keys(amount):
+	if player != null:
+		key_count.text = str(amount)
+
+
 func set_health_potions(amount):
 	if player != null:
 		potion_count.text = str(amount)
 
 
-func update_healthbar():
+func update_healthbar(value):
 	if player != null:
-		if player.stats.health > 0:
-			healthbar.value = player.stats.health
-			health_label.text = str(player.stats.health)
+		if value > 0:
+			healthbar.value = value
+			health_label.text = str(value)
 		else:
 			healthbar.value = 0
 			health_label.text = str(0)
 
 
-func update_staminabar():
+func update_staminabar(value):
 	if player != null:
-		if player.stats.stamina > 0:
-			staminabar.value = player.stats.stamina
-			stamina_label.text = str(round(player.stats.stamina))
+		if value > 0:
+			staminabar.value = value
+			stamina_label.text = str(round(value))
 		else:
 			staminabar.value = 0
 			stamina_label.text = str(0)

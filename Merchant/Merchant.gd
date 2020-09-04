@@ -29,7 +29,7 @@ func show_dialogue():
 
 
 func talk(answer = ""):
-	dialogue_panel.merchant = self
+	dialogue_panel.npc = self
 	
 	if !introduced:
 		match dialogue_state:
@@ -106,7 +106,6 @@ func spawn_shop_items():
 	
 	items_spawned = true
 	times_spawned_items += 1
-
 
 
 func _on_shop_item_taken():

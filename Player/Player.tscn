@@ -231,7 +231,6 @@ anims/player_death = SubResource( 10 )
 
 [node name="Items" type="Node" parent="."]
 script = ExtResource( 3 )
-gold = 25
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]

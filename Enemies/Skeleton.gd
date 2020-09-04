@@ -18,7 +18,7 @@ func _on_Hurtbox_area_entered(area: Area2D):
 		if !hit and !dead:
 			hit = true
 			stats.health -= area.damage
-			hurtbox.start_invincibility(0.5)
+			hurtbox.start_invincibility(invincibility_time)
 			if area.is_in_group("Hitbox"):
 				create_hit_effect(global_position)
 			create_popup_damage(area.damage, Color.white, Vector2(0.3, 0.3))

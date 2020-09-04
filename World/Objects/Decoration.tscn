@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6, 5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 4 )
+
+[node name="Decoration" type="Node2D"]
+
+[node name="WoodenStool" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 20, 141, 10, 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WoodenStool"]
+position = Vector2( 0, -1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WoodenStool/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="WoodenTableSmall" type="Sprite" parent="."]
+position = Vector2( 23, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 35, 137, 14, 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WoodenTableSmall"]
+position = Vector2( 0, -1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WoodenTableSmall/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="BookshelfNormal" type="Sprite" parent="."]
+position = Vector2( 49, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 52, 120, 14, 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BookshelfNormal"]
+position = Vector2( 0, -1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BookshelfNormal/StaticBody2D"]
+shape = SubResource( 3 )
+
+[node name="BookshelfSkull" type="Sprite" parent="."]
+position = Vector2( 75, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 69, 122, 14, 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BookshelfSkull"]
+position = Vector2( 0, -1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BookshelfSkull/StaticBody2D"]
+shape = SubResource( 4 )

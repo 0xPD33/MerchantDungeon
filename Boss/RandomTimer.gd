@@ -4,7 +4,7 @@ extends Timer
 func _ready():
 	if get_parent().is_in_group("BossMobSpawn"):
 		randomize_time(20)
-	else:
+	elif get_parent().is_in_group("BossHeartDrop"):
 		randomize_time(30)
 
 

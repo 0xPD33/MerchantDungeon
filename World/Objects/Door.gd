@@ -1,5 +1,8 @@
 extends StaticBody2D
 
+export (bool) var is_locked = false
+
+var player
 var player_in_range
 
 var opened = false
@@ -12,12 +15,19 @@ onready var door_sound = $DoorSound
 
 
 func _input(_event):
-	if player_in_range:
-		if Input.is_action_just_pressed("interact"):
+	if !is_locked:
+		if player_in_range and player != null and Input.is_action_just_pressed("interact"):
 			if !opened:
 				open()
 			else:
 				close()
+	else:
+		if player_in_range and player != null and Input.is_action_just_pressed("interact"):
+			if player.items.keys >= 1 and !opened:
+				player.items.keys -= 1
+				open()
+			else:
+				pass
 
 
 func open():
@@ -44,12 +54,15 @@ func get_random_door_pitch():
 
 func _on_DetectionArea_body_entered(body: Node):
 	if body.is_in_group("Player"):
+		player = body
 		player_in_range = true
 
 
 func _on_DetectionArea_body_exited(body: Node):
 	if body.is_in_group("Player"):
+		player = null
 		player_in_range = false
-		if opened:
-			close()
+		if !is_locked:
+			if opened:
+				close()
 

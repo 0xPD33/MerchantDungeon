@@ -10,3 +10,10 @@ func set_audio_volume(value):
 	audio_volume = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
 
+
+func randomize_sound_pitch(sound : Object, from : float, to: float):
+	randomize()
+	var random_pitch = rand_range(from, to)
+	sound.pitch_scale = random_pitch
+	return sound
+

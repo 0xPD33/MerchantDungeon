@@ -24,6 +24,8 @@ var player = null
 var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 
+var invincibility_time : float = 0.4
+
 onready var move_anim = $MoveAnimation
 onready var hit_anim = $HitAnimation
 onready var death_anim = $DeathAnimation

@@ -162,6 +162,9 @@ func pickup_item(item):
 	elif item.is_in_group("HealthPotion"):
 		items.health_potions += 1
 		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
+	elif item.is_in_group("Key"):
+		items.keys += 1
+		get_tree().call_group("HUD", "set_health_potions", items.keys)
 	elif item.is_in_group("HealthUpgrade"):
 		stats.max_health += item.increase_amount
 		get_tree().call_group("HUD", "setup_bars")

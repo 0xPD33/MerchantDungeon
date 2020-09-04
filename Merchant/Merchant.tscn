@@ -1,10 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
-[ext_resource path="res://Merchant/DialogPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Merchant/DialoguePanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Merchant/Merchant.gd" type="Script" id=3]
 [ext_resource path="res://Items/ItemSpawner.gd" type="Script" id=5]
 [ext_resource path="res://SFX/merchant_evil_form.wav" type="AudioStream" id=6]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "merchant_show_evil"
@@ -104,6 +105,8 @@ volume_db = -40.0
 
 [node name="DialoguePanel" parent="." instance=ExtResource( 2 )]
 visible = false
+margin_top = -60.0
+margin_bottom = -3.8147e-06
 
 [node name="ItemSpawner" type="Node" parent="."]
 script = ExtResource( 5 )
