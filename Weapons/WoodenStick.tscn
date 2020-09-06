@@ -8,8 +8,11 @@ extents = Vector2( 1.19574, 6 )
 
 [node name="WoodenStick" instance=ExtResource( 1 )]
 attack_duration = 0.15
-attack_range = 25
+attack_range = 20
 attack_knockback = 75
+
+[node name="RayCast2D" parent="." index="0"]
+position = Vector2( 0, -0.3 )
 
 [node name="Body" parent="." index="1"]
 position = Vector2( 0, 0.5 )

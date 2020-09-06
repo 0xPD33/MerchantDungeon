@@ -4,9 +4,9 @@ const POPUP_DAMAGE = preload("res://UI/PopupDamage.tscn")
 const HIT_EFFECT = preload("res://Effects/HitEffect.tscn")
 const UNARMING_PROJECTILE = preload("res://Boss/UnarmingProjectile.tscn")
 
-var acceleration = 175
-var max_speed = 50 setget set_max_speed
-var friction = 150
+var acceleration = 250
+var max_speed = 70 setget set_max_speed
+var friction = 200
 
 enum {
 	STAGE0,
@@ -64,7 +64,7 @@ func _physics_process(delta: float):
 		
 		if player != null:
 			if shooting_projectile or changing_stage:
-				velocity = velocity.move_toward(Vector2.ZERO, (friction * 2) * delta)
+				velocity = velocity.move_toward(Vector2.ZERO, (friction) * delta)
 			else:
 				direction = (player.global_position - global_position).normalized()
 				velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
@@ -77,14 +77,15 @@ func _physics_process(delta: float):
 
 func start_fight():
 	change_stage()
+	get_tree().call_group("HUD", "show_boss_healthbar", "The Merchant", stats.max_health)
 
 
 func end_fight():
 	dead = true
 	death_anim.play("boss_death")
 	yield(death_anim, "animation_finished")
+	get_tree().call_group("World", "end_game")
 	queue_free()
-	get_tree().call_group("World", "launch_credits")
 
 
 func change_stage():
@@ -100,21 +101,21 @@ func change_stage():
 			changing_stage = true
 			stage_anim.play("boss_stage2")
 			yield(stage_anim, "animation_finished")
+			changing_stage = false
 			projectile_shoot_timer.start(projectile_wait_time)
 			set_max_speed(70)
 			state = STAGE2
-			changing_stage = false
 		STAGE2:
 			get_tree().call_group("BossMobSpawn", "start_timer")
 			change_projectile_wait_time(3.0)
 			projectile_speed = 250
-			set_max_speed(85)
+			set_max_speed(80)
 			state = STAGE3
 		STAGE3:
 			stats.set_damage(2)
-			change_projectile_wait_time(1.5)
-			projectile_speed = 275
-			set_max_speed(100)
+			change_projectile_wait_time(2.0)
+			projectile_speed = 300
+			set_max_speed(90)
 
 
 func change_projectile_wait_time(value : float):
@@ -174,17 +175,18 @@ func _on_BossStats_no_health():
 
 
 func _on_BossStats_health_changed(value):
+	get_tree().call_group("HUD", "update_boss_healthbar", value)
 	if value <= 80:
 		change_stage()
-	if value <= 55:
+	if value <= 60:
 		change_stage()
-	if value <= 30:
+	if value <= 20:
 		change_stage()
 
 
 func _on_ProjectileShootTimer_timeout():
 	if player != null:
-		if player.weapon_equipped and !player.weapon.is_in_group("Fists"):
+		if !player.weapon.is_in_group("Fists"):
 			shoot_unarming_projectile()
 	else:
 		pass

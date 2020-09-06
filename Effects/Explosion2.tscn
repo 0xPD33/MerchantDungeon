@@ -7,11 +7,14 @@
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 0.521569, 0.286275, 0 )
+scale = Vector2( 1, 1 )
 region_rect = Rect2( 512, 206, 12, 12 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = ""
 
 [node name="AudioStreamPlayer2D" parent="." index="2"]
-volume_db = -6.0
-pitch_scale = 2.0
+pitch_scale = 2.3
+max_distance = 2000.0
+attenuation = 0.500001

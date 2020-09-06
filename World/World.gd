@@ -25,6 +25,12 @@ func show_help():
 	get_tree().call_group("HUD", "show_help")
 
 
+func end_game():
+	Global.game_started = false
+	get_tree().call_group("HUD", "hide_boss_healthbar")
+	launch_credits()
+
+
 func launch_credits():
 	get_tree().change_scene("res://UI/Credits.tscn")
 

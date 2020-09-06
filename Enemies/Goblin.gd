@@ -6,10 +6,6 @@ var speed_multiplier : float = 1.5
 var time_moving_faster : float = 1.0
 
 
-func _ready():
-	$MoveSpeedTimer.start()
-
-
 func _physics_process(delta: float):
 	if !dead:
 		match state:

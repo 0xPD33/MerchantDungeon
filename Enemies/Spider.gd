@@ -45,7 +45,6 @@ func _on_Stats_no_health():
 
 
 func _on_IdleTimer_timeout():
-	randomize()
-	idle_audio.pitch_scale = rand_range(0.9, 1.1)
+	idle_audio = Global.randomize_sound_pitch(idle_audio, 0.9, 1.1)
 	idle_audio.play()
 

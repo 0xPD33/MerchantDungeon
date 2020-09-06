@@ -5,7 +5,6 @@
 [ext_resource path="res://Projectiles/MagicProjectile1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Explosion2.tscn" type="PackedScene" id=4]
 
-
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.336364 ), 0.0, 0.0, 0, 0 ]
 
@@ -17,9 +16,10 @@ colors = PoolColorArray( 1, 0.635294, 0.215686, 1, 0, 0, 0, 0 )
 radius = 7.8915
 
 [node name="FireProjectile" instance=ExtResource( 3 )]
+scale = Vector2( 0.75, 0.75 )
 impact_effect = ExtResource( 4 )
 projectile_speed = 160.0
-knockback_amount = 120
+knockback_amount = 110
 
 [node name="CPUParticles2D" parent="." index="0"]
 visible = true

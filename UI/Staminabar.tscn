@@ -11,15 +11,15 @@ font_data = ExtResource( 3 )
 [node name="Staminabar" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -260.0
-margin_bottom = -160.0
+margin_right = -268.0
+margin_bottom = -168.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-margin_right = 60.0
-margin_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 step = 0.1
 value = 50.0
 texture_under = ExtResource( 2 )

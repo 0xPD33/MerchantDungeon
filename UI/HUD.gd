@@ -1,5 +1,7 @@
 extends Control
 
+var boss_UI = preload("res://Boss/BossUI.tscn")
+
 var player = null
 var setup_done = false
 
@@ -107,4 +109,15 @@ func update_staminabar(value):
 		else:
 			staminabar.value = 0
 			stamina_label.text = str(0)
+
+
+func show_boss_healthbar(boss_name : String, max_health : int):
+	var instance = boss_UI.instance()
+	instance.setup(boss_name, max_health)
+	add_child(instance)
+	instance.show_self()
+
+
+func update_boss_healthbar(value):
+	get_node("BossUI").update_health(value)
 

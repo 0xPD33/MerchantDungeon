@@ -103,10 +103,10 @@ func _move_player():
 	velocity = move_and_slide(velocity)
 	
 	if Input.is_action_pressed("sprint") and can_sprint:
-		sprint_particles_enabled(true)
-		anim_player.playback_speed = 1.5
 		set_max_speed(sprint_speed)
 		if moving:
+			anim_player.playback_speed = 1.5
+			sprint_particles_enabled(true)
 			stats.stamina -= 0.1
 	else:
 		sprint_particles_enabled(false)
@@ -136,6 +136,8 @@ func equip_weapon(new_weapon):
 	if new_weapon.is_in_group("MeleeWeapon"):
 		weapon_hitbox = weapon.get_node("Body/Hitbox")
 	weapon_equipped = true
+	if !can_attack:
+		can_attack = true
 
 
 func drop_weapon():
@@ -151,6 +153,7 @@ func drop_weapon():
 
 func pickup_item(item):
 	pickup_audio(item.pickup_audio)
+	
 	if item.is_in_group("Gold"):
 		items.gold += item.gold_amount
 		get_tree().call_group("HUD", "set_gold", items.gold)

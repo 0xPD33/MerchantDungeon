@@ -63,8 +63,7 @@ func attack():
 
 
 func play_swing_audio():
-	randomize()
-	swing_audio.pitch_scale = rand_range(0.5, 1.5)
+	swing_audio = Global.randomize_sound_pitch(swing_audio, 0.5, 1.5)
 	swing_audio.play()
 
 

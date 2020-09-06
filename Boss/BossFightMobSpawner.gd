@@ -2,12 +2,12 @@ extends Area2D
 
 export (Array, PackedScene) var possible_mob_spawns
 
-var max_mobs = 1
-var mob_count = 0
+var max_mobs = 2
+var mob_count = []
 
 
 func spawn_mob():
-	if mob_count < max_mobs:
+	if mob_count.size() < max_mobs:
 		randomize()
 		var chosen_mob = possible_mob_spawns[randi() % possible_mob_spawns.size()]
 		var mob = chosen_mob.instance()

@@ -5,6 +5,7 @@
 
 [node name="BrokenSword" instance=ExtResource( 1 )]
 attack_damage = 2.0
+attack_range = 25
 attack_knockback = 90
 weapon_distance = 13
 
@@ -20,6 +21,6 @@ offset = Vector2( 3, -3 )
 region_rect = Rect2( 617.083, 120, 9.91656, 9.89912 )
 
 [node name="Hitbox" parent="Body" index="2"]
-position = Vector2( 0.884882, -0.884881 )
+position = Vector2( 0.943874, -0.943873 )
 
 [editable path="Body/Hitbox"]

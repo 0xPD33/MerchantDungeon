@@ -46,7 +46,6 @@ onready var normal_speed = max_speed
 func _ready():
 	hitbox.damage = stats.damage
 	add_to_group("Enemy")
-	idle_timer.start()
 
 
 func _physics_process(delta: float):
@@ -95,4 +94,15 @@ func create_hit_effect(pos):
 	instance.position = pos
 	get_tree().current_scene.add_child(instance)
 
+
+func _on_VisibilityEnabler2D_screen_entered():
+	for node in get_children():
+		if node is Timer:
+			node.start()
+
+
+func _on_VisibilityEnabler2D_screen_exited():
+	for node in get_children():
+		if node is Timer:
+			node.stop()
 
