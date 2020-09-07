@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Tilesheets/colored_packed.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Enemies/Goblin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Weapons/WeaponDrops/WoodenStickDrop.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Weapons/WeaponDrops/BrokenSwordDrop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Objects/Bones.tscn" type="PackedScene" id=9]
 [ext_resource path="res://World/Objects/Torch.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Merchant/Merchant.tscn" type="PackedScene" id=11]
@@ -185,7 +184,7 @@ position = Vector2( -16, 48 )
 unique_drop = ExtResource( 7 )
 
 [node name="Barrel21" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
-position = Vector2( -304, 48 )
+position = Vector2( -336, 72 )
 
 [node name="Barrel2" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
 position = Vector2( 272, 208 )
@@ -226,7 +225,7 @@ unique_drop = ExtResource( 15 )
 
 [node name="Barrel22" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
 position = Vector2( 848, 96 )
-unique_drop = ExtResource( 8 )
+unique_drop = ExtResource( 15 )
 
 [node name="Barrel23" parent="YSort/Objects/Barrels" instance=ExtResource( 4 )]
 position = Vector2( 952, 496 )
@@ -414,18 +413,6 @@ position = Vector2( 912, 328 )
 [node name="Cobwebs75" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
 position = Vector2( 992, 328 )
 
-[node name="Cobwebs76" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 808, 392 )
-
-[node name="Cobwebs78" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 744, 328 )
-
-[node name="Cobwebs79" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 784, 328 )
-
-[node name="Cobwebs80" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 744, 368 )
-
 [node name="Cobwebs2" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
 position = Vector2( -40, 200 )
 
@@ -547,7 +534,7 @@ is_locked = true
 [node name="Items" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( -304, 96 )
+position = Vector2( -336, 128 )
 
 [node name="MerchantRoom" type="Node2D" parent="YSort"]
 
@@ -616,7 +603,7 @@ position = Vector2( 232, 200 )
 position = Vector2( 576, 48 )
 
 [node name="Spider26" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 776, 176 )
+position = Vector2( 784, 192 )
 
 [node name="Spider27" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 848, 192 )
@@ -628,10 +615,10 @@ position = Vector2( 1072, 128 )
 position = Vector2( 1088, 144 )
 
 [node name="Spider30" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 896, 384 )
+position = Vector2( 920, 376 )
 
 [node name="Spider31" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 904, 416 )
+position = Vector2( 920, 464 )
 
 [node name="Spider32" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 1008, 384 )
@@ -645,11 +632,8 @@ position = Vector2( 472, 128 )
 [node name="Spider4" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 608, 88 )
 
-[node name="Spider7" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 480, 416 )
-
 [node name="Spider9" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 768, 352 )
+position = Vector2( 992, 454 )
 
 [node name="Spider10" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 384, 640 )
@@ -667,10 +651,10 @@ position = Vector2( 736, 880 )
 position = Vector2( 720, 896 )
 
 [node name="Spider11" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 512, 432 )
+position = Vector2( 496, 464 )
 
 [node name="Spider33" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 520, 400 )
+position = Vector2( 512, 408 )
 
 [node name="Spider13" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( -344, 1072 )
@@ -700,22 +684,19 @@ position = Vector2( -336, 1032 )
 position = Vector2( 608, 152 )
 
 [node name="Goblin8" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 792, 96 )
+position = Vector2( 928, 152 )
 
 [node name="Goblin10" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 832, 112 )
+position = Vector2( 808, 104 )
 
 [node name="Goblin13" parent="YSort/Enemies" instance=ExtResource( 5 )]
 position = Vector2( 1088, 368 )
 
-[node name="Goblin14" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 1048, 344 )
-
 [node name="Goblin15" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 1000, 472 )
+position = Vector2( 784, 352 )
 
 [node name="Goblin16" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 904, 480 )
+position = Vector2( 760, 408 )
 
 [node name="Goblin2" parent="YSort/Enemies" instance=ExtResource( 5 )]
 position = Vector2( 472, 528 )

@@ -5,7 +5,7 @@
 [ext_resource path="res://Weapons/WeaponDrops/WeaponDrop.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 20.0
+radius = 26.0
 
 [node name="BrokenSwordDrop" instance=ExtResource( 3 )]
 scale = Vector2( 0.5, 0.5 )
@@ -18,7 +18,5 @@ weapon_description = "It's been in use for quite a while."
 shape = SubResource( 1 )
 
 [node name="DropPanel" parent="." index="3"]
-margin_left = 24.0
-margin_top = -24.0
-margin_right = 99.0
-margin_bottom = 0.999998
+margin_left = 20.0
+margin_right = 110.0

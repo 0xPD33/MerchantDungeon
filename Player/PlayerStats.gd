@@ -14,11 +14,6 @@ onready var health = max_health setget set_health
 onready var stamina = max_stamina setget set_stamina
 
 
-func _ready():
-	connect("health_changed", self, "_on_health_changed")
-	connect("stamina_changed", self, "_on_stamina_changed")
-
-
 func set_area_of_sight(value):
 	area_of_sight = value
 	get_parent().player_light.texture_scale = value
@@ -44,6 +39,11 @@ func set_stamina(value):
 	emit_signal("stamina_changed", stamina)
 	if stamina <= 0:
 		emit_signal("no_stamina")
+
+
+func _ready():
+	connect("health_changed", self, "_on_health_changed")
+	connect("stamina_changed", self, "_on_stamina_changed")
 
 
 func check_stamina():

@@ -13,6 +13,7 @@ var velocity = Vector2.ZERO
 var input_vector
 
 var moving = false
+var sprinting = false
 
 var can_sprint = true
 var can_attack = true
@@ -105,10 +106,12 @@ func _move_player():
 	if Input.is_action_pressed("sprint") and can_sprint:
 		set_max_speed(sprint_speed)
 		if moving:
+			sprinting = true
 			anim_player.playback_speed = 1.5
 			sprint_particles_enabled(true)
 			stats.stamina -= 0.1
 	else:
+		sprinting = false
 		sprint_particles_enabled(false)
 		anim_player.playback_speed = 1
 		set_max_speed(normal_speed)
@@ -149,39 +152,6 @@ func drop_weapon():
 		get_tree().current_scene.get_node("YSort/Items").add_child(weapon_drop)
 		weapon_position.get_child(0).queue_free()
 		equip_fists()
-
-
-func pickup_item(item):
-	pickup_audio(item.pickup_audio)
-	
-	if item.is_in_group("Gold"):
-		items.gold += item.gold_amount
-		get_tree().call_group("HUD", "set_gold", items.gold)
-		if items.gold >= 3:
-			get_tree().call_group("HUD", "change_gold_texture", item.big_texture)
-	elif item.is_in_group("Heart"):
-		if stats.health < stats.max_health:
-			stats.health += item.heal_amount
-	elif item.is_in_group("HealthPotion"):
-		items.health_potions += 1
-		get_tree().call_group("HUD", "set_health_potions", items.health_potions)
-	elif item.is_in_group("Key"):
-		items.keys += 1
-		get_tree().call_group("HUD", "set_health_potions", items.keys)
-	elif item.is_in_group("HealthUpgrade"):
-		stats.max_health += item.increase_amount
-		get_tree().call_group("HUD", "setup_bars")
-	elif item.is_in_group("SpeedUpgrade"):
-		normal_speed += item.increase_amount
-		sprint_speed += item.increase_amount
-		set_max_speed(normal_speed)
-	elif item.is_in_group("AreaOfSightUpgrade"):
-		stats.set_area_of_sight(stats.area_of_sight + item.increase_amount)
-
-
-func pickup_audio(stream):
-	pickup_sound.stream = stream
-	pickup_sound.play()
 
 
 func use_health_potion():

@@ -26,14 +26,6 @@ func set_actual_name():
 	actual_weapon_name = actual_name.capitalize()
 
 
-func setup():
-	var setup_done = false
-	get_damage()
-	set_actual_name()
-	drop_panel.setup()
-	setup_done = true
-
-
 func _ready():
 	player = get_tree().current_scene.get_node("YSort/Player")
 	setup()
@@ -42,6 +34,14 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("interact") and can_take and player != null:
 		take_weapon()
+
+
+func setup():
+	var setup_done = false
+	get_damage()
+	set_actual_name()
+	drop_panel.setup()
+	setup_done = true
 
 
 func take_weapon():

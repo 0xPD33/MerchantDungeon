@@ -2,12 +2,14 @@ extends Panel
 
 var current_weapon
 
-onready var weapon_name = $CenterContainer/VBoxContainer/WeaponName
-onready var weapon_description = $CenterContainer/VBoxContainer/WeaponDescription
-onready var damage_label = $CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/DamageLabel
+onready var weapon_name = $VBoxContainer/WeaponName
+onready var weapon_description = $VBoxContainer/WeaponDescription
+onready var damage_label = $VBoxContainer/VBoxContainer/HBoxContainer/DamageLabel
 
 
 func setup():
+	hide()
+	
 	current_weapon = get_tree().current_scene.get_node("YSort/Player/WeaponPosition").get_child(0)
 	weapon_name.text = get_parent().actual_weapon_name
 	weapon_description.text = get_parent().weapon_description
@@ -22,4 +24,6 @@ func setup():
 		damage_label.text = "Dmg: " + str(get_parent().damage) + " (current:  " + str(current_damage) + ")"
 	else:
 		damage_label.text = "Dmg: " + str(get_parent().damage)
+	
+	show()
 
