@@ -36,6 +36,8 @@ onready var anim_player = $AnimationPlayer
 onready var hit_anim = $HitAnimation
 onready var death_anim = $DeathAnimation
 
+onready var player_camera = $Camera2D
+
 onready var sprint_particles = $SprintParticles
 onready var player_light = $Light2D
 onready var hurtbox = $Hurtbox

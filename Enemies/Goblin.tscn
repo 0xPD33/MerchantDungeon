@@ -39,7 +39,7 @@ radius = 8.4792
 radius = 7.18663
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 67.6563
+radius = 75.0
 
 [node name="Goblin" instance=ExtResource( 1 )]
 script = ExtResource( 3 )

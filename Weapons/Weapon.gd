@@ -1,5 +1,7 @@
 extends Node2D
 
+export (Array, Resource) var swing_sounds
+
 export (float) var attack_duration = 0.2
 export (float) var attack_damage = 1
 
@@ -63,6 +65,9 @@ func attack():
 
 
 func play_swing_audio():
+	randomize()
+	var swing_audio_stream = swing_sounds[randi() % swing_sounds.size()]
+	swing_audio.stream = swing_audio_stream
 	swing_audio = Global.randomize_sound_pitch(swing_audio, 0.5, 1.5)
 	swing_audio.play()
 

@@ -185,7 +185,7 @@ shape = SubResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 process_mode = 0
-smoothing_speed = 10.0
+editor_draw_screen = false
 script = ExtResource( 9 )
 
 [node name="Light2D" type="Light2D" parent="."]

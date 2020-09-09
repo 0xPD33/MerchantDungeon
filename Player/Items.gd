@@ -40,7 +40,7 @@ func pickup_item(item):
 		get_tree().call_group("HUD", "setup_bars")
 	elif item.is_in_group("Key"):
 		keys += 1
-		get_tree().call_group("HUD", "set_health_potions", keys)
+		get_tree().call_group("HUD", "set_keys", keys)
 	elif item.is_in_group("SpeedUpgrade"):
 		get_parent().set_normal_speed(get_parent().normal_speed + item.increase_amount)
 		get_parent().set_sprint_speed(get_parent().normal_speed + item.increase_amount)

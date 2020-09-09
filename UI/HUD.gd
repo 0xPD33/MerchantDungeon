@@ -67,8 +67,10 @@ func pause_game():
 
 func setup_bars():
 	healthbar.max_value = player.stats.max_health
+	healthbar.value = player.stats.health
 	health_label.text = str(player.stats.max_health)
 	staminabar.max_value = player.stats.max_stamina
+	staminabar.value = player.stats.stamina
 	stamina_label.text = str(player.stats.max_stamina)
 
 

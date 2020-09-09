@@ -14,7 +14,7 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.937255, 0.329412, 0.329412, 1 )
-scale = Vector2( 0.75, 0.75 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
