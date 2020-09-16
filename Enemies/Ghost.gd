@@ -17,6 +17,7 @@ func _on_Hurtbox_area_entered(area: Area2D):
 	if area.is_in_group("Hitbox") or area.is_in_group("Projectile"):
 		if !hit and !dead:
 			hit = true
+			idle_timer.stop()
 			stats.health -= area.damage
 			hurtbox.start_invincibility(invincibility_time)
 			if area.is_in_group("Hitbox"):

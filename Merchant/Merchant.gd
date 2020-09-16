@@ -49,7 +49,7 @@ func talk(answer = ""):
 				match answer:
 					"A":
 						dialogue_state = 3
-						dialogue_panel.dialogue = "I can't explain that yet."
+						dialogue_panel.dialogue = "I can't explain that."
 						dialogue_panel.answers = "[E] - Who are you?"
 						show_dialogue()
 			3:

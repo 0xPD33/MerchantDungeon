@@ -5,8 +5,6 @@ var boss_UI = preload("res://Boss/BossUI.tscn")
 var player = null
 var setup_done = false
 
-var help_shown = false
-
 onready var healthbar = $BarContainer/Healthbar/TextureProgress
 onready var health_label = $BarContainer/Healthbar/TextureProgress/Label
 

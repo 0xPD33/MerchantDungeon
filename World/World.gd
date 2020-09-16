@@ -1,6 +1,6 @@
 extends Node2D
 
-var tutorial_delay : float = 1.0
+var tutorial_delay : float = 1.5
 
 onready var intro_sequence = $IntroSequencePlayer
 

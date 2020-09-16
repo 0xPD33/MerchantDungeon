@@ -72,3 +72,4 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hide = SubResource( 2 )
 anims/show = SubResource( 3 )
+[connection signal="advance_tutorial" from="." to="." method="_on_Tutorial_advance_tutorial"]

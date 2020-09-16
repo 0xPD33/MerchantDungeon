@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal barrel_destroyed
+
 export (PackedScene) var unique_drop
 
 const EXPLOSION = preload("res://Effects/Explosion1.tscn")
@@ -13,6 +15,7 @@ onready var drops = $Drops
 
 
 func _ready():
+	connect("barrel_destroyed", get_tree().current_scene.get_node("UI/HUD/Tutorial"), "_on_Barrel_destroyed")
 	player = get_tree().current_scene.get_node("YSort/Player")
 	add_to_group("Barrel")
 
@@ -28,6 +31,7 @@ func explode():
 		drops.drop_unique_item()
 	else:
 		drops.drop_item()
+	emit_signal("barrel_destroyed")
 	queue_free()
 
 

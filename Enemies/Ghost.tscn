@@ -1,21 +1,22 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tilesheets/colored_transparent.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Ghost.gd" type="Script" id=3]
-[ext_resource path="res://SFX/RPG Sound Pack/battle/magic1.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/ghost_hit.wav" type="AudioStream" id=4]
 [ext_resource path="res://Animations/ghost_move.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/ghost_hit.tres" type="Animation" id=6]
 [ext_resource path="res://Animations/ghost_death.tres" type="Animation" id=7]
 [ext_resource path="res://SFX/ghost.wav" type="AudioStream" id=8]
+[ext_resource path="res://SFX/ghost_death.wav" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 4.12311
+radius = 4.0
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -2, -6, -2, -4, -3, -4, -3, -2, -4, -2, -4, -1, -5, -1, -5, 1, -6, 1, -6, 5, -4, 5, -4, 3, -5, 3, -5, 2, -4, 2, -4, 0, -3, 0, -3, 4, -2, 4, -2, 6, -1, 6, -1, 7, 2, 7, 2, 6, 1, 6, 1, 5, 2, 5, 2, 4, 3, 4, 3, 0, 4, 0, 4, 2, 5, 2, 5, 3, 4, 3, 4, 5, 6, 5, 6, 1, 5, 1, 5, -1, 4, -1, 4, -2, 3, -2, 3, -4, 2, -4, 2, -6, 1, -6, 1, -7, -1, -7, -1, -6 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "ghost_move_stop"
 length = 0.2
 tracks/0/type = "value"
@@ -43,14 +44,14 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.498039 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 8.0
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 6.0
-
 [sub_resource type="CircleShape2D" id=5]
-radius = 125.0
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 150.0
 
 [node name="Ghost" instance=ExtResource( 2 )]
 collision_layer = 0
@@ -65,8 +66,8 @@ region_enabled = true
 region_rect = Rect2( 444, 103, 12, 14 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-visible = false
 shape = SubResource( 1 )
+disabled = true
 
 [node name="LightOccluder2D" parent="." index="2"]
 visible = false
@@ -74,9 +75,10 @@ occluder = SubResource( 2 )
 
 [node name="MoveAnimation" parent="." index="4"]
 anims/ghost_move = ExtResource( 5 )
-anims/ghost_move_stop = SubResource( 6 )
+anims/ghost_move_stop = SubResource( 3 )
 
 [node name="HitAnimation" parent="." index="5"]
+playback_speed = 2.0
 anims/ghost_hit = ExtResource( 6 )
 
 [node name="DeathAnimation" parent="." index="6"]
@@ -84,26 +86,31 @@ anims/ghost_death = ExtResource( 7 )
 
 [node name="IdleAudio" parent="." index="8"]
 stream = ExtResource( 8 )
-volume_db = -6.0
+volume_db = -3.0
 
 [node name="HitAudio" parent="." index="9"]
 stream = ExtResource( 4 )
+volume_db = -3.0
+
+[node name="DeathAudio" parent="." index="10"]
+stream = ExtResource( 9 )
+volume_db = -3.0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 visible = false
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 visible = false
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Stats" parent="." index="14"]
 max_health = 6
-knockback_multiplier = 1.2
+knockback_multiplier = 1.25
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="Hurtbox"]

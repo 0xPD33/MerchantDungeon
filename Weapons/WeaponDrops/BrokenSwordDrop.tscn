@@ -17,6 +17,6 @@ weapon_description = "It's been in use for quite a while."
 [node name="CollisionShape2D" parent="PickupRadius" index="0"]
 shape = SubResource( 1 )
 
-[node name="DropPanel" parent="." index="3"]
+[node name="DropPanel" parent="." index="4"]
 margin_left = 20.0
 margin_right = 110.0
