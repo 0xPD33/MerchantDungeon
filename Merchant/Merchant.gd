@@ -68,31 +68,34 @@ func talk(answer = ""):
 						dialogue_panel.hide()
 						introduced = true
 	else:
-		match dialogue_state:
-			0:
-				dialogue_state = 1
-				dialogue_panel.dialogue = "Back to get more?"
-				dialogue_panel.answers = "[E] - Yes, please.\n[Q] - No."
-				show_dialogue()
-			1:
-				match answer:
-					"A":
-						dialogue_state = 2
-						dialogue_panel.dialogue = "Well.. I've raised the prices a bit."
-						dialogue_panel.answers = "[E] - Alright.\n[Q] - Oh, goodbye then."
-						show_dialogue()
-					"B":
-						dialogue_state = 0
-						dialogue_panel.hide()
-			2:
-				match answer:
-					"A":
-						dialogue_state = 0
-						dialogue_panel.hide()
-						spawn_shop_items()
-					"B":
-						dialogue_state = 0
-						dialogue_panel.hide()
+		if times_spawned_items <= 2:
+			match dialogue_state:
+				0:
+					dialogue_state = 1
+					dialogue_panel.dialogue = "Back to get more?"
+					dialogue_panel.answers = "[E] - Yes, please.\n[Q] - No."
+					show_dialogue()
+				1:
+					match answer:
+						"A":
+							dialogue_state = 2
+							dialogue_panel.dialogue = "Well.. I've raised the prices a bit."
+							dialogue_panel.answers = "[E] - Alright.\n[Q] - Oh, goodbye then."
+							show_dialogue()
+						"B":
+							dialogue_state = 0
+							dialogue_panel.hide()
+				2:
+					match answer:
+						"A":
+							dialogue_state = 0
+							dialogue_panel.hide()
+							spawn_shop_items()
+						"B":
+							dialogue_state = 0
+							dialogue_panel.hide()
+		else:
+			pass
 
 
 func spawn_shop_items():

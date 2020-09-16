@@ -98,8 +98,10 @@ func _input(_event):
 			weapon.attack()
 		if Input.is_action_just_pressed("drop_weapon"):
 			drop_weapon()
-	if Input.is_action_just_pressed("use_health_potion"):
+	if Input.is_action_just_pressed("use_health_potion") and items.health_potions > 0:
 		use_health_potion()
+	if Input.is_action_just_pressed("test"):
+		items.gold += 50
 
 
 func _move_player():
@@ -111,13 +113,14 @@ func _move_player():
 			sprinting = true
 			anim_player.playback_speed = 1.5
 			sprint_particles_enabled(true)
+			stats.set_regenerating(false)
 			stats.stamina -= 0.1
 	else:
 		sprinting = false
 		sprint_particles_enabled(false)
 		anim_player.playback_speed = 1
 		set_max_speed(normal_speed)
-		stats.regenerate()
+		stats.set_regenerating(true)
 
 
 func _move_weapon():
@@ -157,7 +160,7 @@ func drop_weapon():
 
 
 func use_health_potion():
-	if items.health_potions > 0 and stats.health < stats.max_health:
+	if stats.health < stats.max_health:
 		heal_player()
 		play_potion_sound()
 		items.health_potions -= 1

@@ -10,6 +10,9 @@ var area_of_sight = 0.25 setget set_area_of_sight
 var max_health = 6 setget set_max_health
 var max_stamina = 12 setget set_max_stamina
 
+var regenerating = false setget set_regenerating
+var started_regen = false
+
 onready var health = max_health setget set_health
 onready var stamina = max_stamina setget set_stamina
 
@@ -41,28 +44,22 @@ func set_stamina(value):
 		emit_signal("no_stamina")
 
 
+func set_regenerating(value):
+	regenerating = value
+	if regenerating:
+		regenerate()
+
+
 func _ready():
 	connect("health_changed", self, "_on_health_changed")
 	connect("stamina_changed", self, "_on_stamina_changed")
 
 
-func check_stamina():
-	var enough : bool
-	
-	if stamina > 0:
-		enough = true
-	else:
-		enough = false
-	
-	return enough
-
-
 func regenerate():
-	while stamina < max_stamina:
+	if stamina < max_stamina:
 		set_stamina(stamina + 0.1)
-		if stamina >= max_stamina / 4:
+		if stamina >= max_stamina / 5:
 			get_parent().can_sprint = true
-		break
 
 
 func _on_health_changed(value):

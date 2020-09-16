@@ -8,7 +8,6 @@ export (int) var item_cost
 
 var merchant
 var player
-var player_gold
 
 var price_multiplier = 1.0 setget set_price_multiplier
 
@@ -26,7 +25,6 @@ onready var anim_player = $AnimationPlayer
 func set_price_multiplier(value):
 	price_multiplier = value
 	item_cost = round(item_cost * price_multiplier)
-	gold_label = item_cost
 
 
 func _ready():
@@ -35,11 +33,11 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("interact") and can_interact and !taken:
-		if player_gold >= item_cost:
+		if player.items.gold >= item_cost:
 			taken = true
 			item_spawner.spawn_item(linked_item, global_position)
-			player_gold -= item_cost
-			get_tree().call_group("HUD", "set_gold", player_gold)
+			player.items.gold -= item_cost
+
 			emit_signal("was_taken")
 			queue_free()
 		else:
@@ -55,7 +53,6 @@ func setup():
 	connect("was_taken", merchant, "_on_shop_item_taken")
 	
 	player = get_tree().current_scene.get_node("YSort/Player")
-	player_gold = player.items.gold
 	item_panel.hide()
 	item_name_label.text = item_name
 	gold_label.text = str(item_cost)

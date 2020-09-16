@@ -15,7 +15,6 @@ onready var drops = $Drops
 
 
 func _ready():
-	connect("barrel_destroyed", get_tree().current_scene.get_node("UI/HUD/Tutorial"), "_on_Barrel_destroyed")
 	player = get_tree().current_scene.get_node("YSort/Player")
 	add_to_group("Barrel")
 

@@ -37,7 +37,7 @@ func _process(_delta):
 
 
 func check_player_stamina():
-	if get_parent().get_parent().stats.stamina > 1:
+	if get_parent().get_parent().stats.stamina > get_parent().get_parent().stats.max_stamina / 5:
 		can_attack = true
 	else:
 		can_attack = false
@@ -67,7 +67,7 @@ func shoot_projectile():
 	var projectile_instance = projectile.instance()
 	get_tree().current_scene.get_node("YSort/Projectiles").add_child(projectile_instance)
 	projectile_instance.shoot(projectile_damage, attack_direction, projectile_position.global_position)
-	get_parent().get_parent().stats.stamina -= get_parent().get_parent().stats.stamina
+	get_parent().get_parent().stats.stamina -= get_parent().get_parent().stats.max_stamina / 2
 
 
 func _attack_complete():

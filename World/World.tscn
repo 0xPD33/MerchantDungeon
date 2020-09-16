@@ -353,14 +353,17 @@ position = Vector2( 256, 744 )
 [node name="Cobwebs48" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
 position = Vector2( 744, 856 )
 
-[node name="Cobwebs49" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 656, 888 )
-
 [node name="Cobwebs50" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
-position = Vector2( 744, 896 )
+position = Vector2( 744, 920 )
 
 [node name="Cobwebs51" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
+position = Vector2( 680, 920 )
+
+[node name="Cobwebs55" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
 position = Vector2( 696, 936 )
+
+[node name="Cobwebs58" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
+position = Vector2( 728, 952 )
 
 [node name="Cobwebs13" parent="YSort/Objects/Cobwebs" instance=ExtResource( 13 )]
 position = Vector2( 584, 24 )
@@ -647,11 +650,14 @@ position = Vector2( 480, 720 )
 [node name="Spider25" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 232, 720 )
 
-[node name="Spider21" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 736, 880 )
-
 [node name="Spider22" parent="YSort/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 720, 896 )
+position = Vector2( 728, 880 )
+
+[node name="Spider34" parent="YSort/Enemies" instance=ExtResource( 3 )]
+position = Vector2( 720, 936 )
+
+[node name="Spider35" parent="YSort/Enemies" instance=ExtResource( 3 )]
+position = Vector2( 704, 912 )
 
 [node name="Spider11" parent="YSort/Enemies" instance=ExtResource( 3 )]
 position = Vector2( 496, 464 )

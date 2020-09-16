@@ -10,14 +10,17 @@ onready var stats = get_parent().get_node("Stats")
 
 func set_gold(value):
 	gold = value
+	get_tree().call_group("HUD", "set_gold", gold)
 
 
 func set_keys(value):
 	keys = value
+	get_tree().call_group("HUD", "set_keys", keys)
 
 
 func set_health_potions(value):
 	health_potions = value
+	get_tree().call_group("HUD", "set_health_potions", health_potions)
 
 
 func pickup_item(item):
@@ -25,22 +28,23 @@ func pickup_item(item):
 	
 	if item.is_in_group("Gold"):
 		gold += item.gold_amount
-		get_tree().call_group("HUD", "set_gold", gold)
 		if gold >= 3:
 			get_tree().call_group("HUD", "change_gold_texture", item.big_texture)
+	elif item.is_in_group("Key"):
+		keys += 1
 	elif item.is_in_group("Heart"):
 		if stats.health < stats.max_health:
 			stats.health += item.heal_amount
 	elif item.is_in_group("HealthPotion"):
 		health_potions += 1
-		get_tree().call_group("HUD", "set_health_potions", health_potions)
 	elif item.is_in_group("HealthUpgrade"):
 		stats.max_health += item.increase_amount
 		stats.health = stats.max_health
 		get_tree().call_group("HUD", "setup_bars")
-	elif item.is_in_group("Key"):
-		keys += 1
-		get_tree().call_group("HUD", "set_keys", keys)
+	elif item.is_in_group("StaminaUpgrade"):
+		stats.max_stamina += item.increase_amount
+		stats.stamina = stats.max_stamina
+		get_tree().call_group("HUD", "setup_bars")
 	elif item.is_in_group("SpeedUpgrade"):
 		get_parent().set_normal_speed(get_parent().normal_speed + item.increase_amount)
 		get_parent().set_sprint_speed(get_parent().normal_speed + item.increase_amount)
