@@ -6,8 +6,8 @@
 
 [node name="StaminaUpgradeShopItem" instance=ExtResource( 2 )]
 linked_item = ExtResource( 3 )
-item_name = "Stamina Upgrade"
-item_cost = 16
+item_name = "Max Stamina ++"
+item_cost = 20
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.901961, 0.768627, 0.243137, 1 )

@@ -100,8 +100,6 @@ func _input(_event):
 			drop_weapon()
 	if Input.is_action_just_pressed("use_health_potion") and items.health_potions > 0:
 		use_health_potion()
-	if Input.is_action_just_pressed("test"):
-		items.gold += 50
 
 
 func _move_player():

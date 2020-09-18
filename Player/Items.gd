@@ -27,16 +27,16 @@ func pickup_item(item):
 	pickup_audio(item.pickup_audio)
 	
 	if item.is_in_group("Gold"):
-		gold += item.gold_amount
+		self.gold += item.gold_amount
 		if gold >= 3:
 			get_tree().call_group("HUD", "change_gold_texture", item.big_texture)
 	elif item.is_in_group("Key"):
-		keys += 1
+		self.keys += 1
 	elif item.is_in_group("Heart"):
 		if stats.health < stats.max_health:
 			stats.health += item.heal_amount
 	elif item.is_in_group("HealthPotion"):
-		health_potions += 1
+		self.health_potions += 1
 	elif item.is_in_group("HealthUpgrade"):
 		stats.max_health += item.increase_amount
 		stats.health = stats.max_health
